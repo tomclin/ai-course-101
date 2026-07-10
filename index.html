@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>讓 AI 認識你 — 課程素材</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light dark;
+    --paper:#F7F6F2;
+    --surface:#FFFFFF;
+    --ink:#17263B;
+    --muted:#3D4A5C;
+    --faint:#677180;
+    --teal:#2E7D6B;
+    --seal:#B5432E;
+    --hair:#D9D6CE;
+    --on-accent:#FDFBF7;
+    --wash:#EDF3F1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#14181F;
+      --surface:#1C222B;
+      --ink:#E8E5DE;
+      --muted:#B4BCC7;
+      --faint:#87919D;
+      --teal:#4FA893;
+      --seal:#D4664F;
+      --hair:#2A3038;
+      --on-accent:#16100E;
+      --wash:#1A2420;
+    }
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--paper);}
+  body{
+    color:var(--ink);
+    font-family:'Noto Sans TC',sans-serif;
+    font-size:16px;line-height:1.7;
+    padding:48px 22px 64px;
+  }
+  .page{max-width:720px;margin:0 auto;}
+
+  .kicker{
+    display:inline-block;background:var(--teal);color:var(--on-accent);
+    font-size:13px;letter-spacing:.3em;padding:5px 14px;border-radius:999px;
+    margin-bottom:18px;font-weight:500;
+  }
+  h1{font-weight:900;font-size:clamp(28px,6vw,40px);line-height:1.3;}
+  h1 em{font-style:normal;color:var(--teal);}
+  .sub{margin-top:12px;font-size:16px;color:var(--muted);max-width:52ch;}
+
+  h2{
+    font-weight:700;font-size:18px;
+    margin:32px 0 12px;display:flex;align-items:center;gap:10px;
+  }
+  h2::before{content:"";width:22px;height:3px;background:var(--teal);}
+
+  .list{display:grid;gap:12px;}
+  a.item{
+    display:block;background:var(--surface);border:1px solid var(--hair);border-radius:10px;
+    padding:15px 18px;text-decoration:none;color:var(--ink);
+  }
+  a.item:hover{border-color:var(--teal);}
+  a.item b{font-size:16px;font-weight:700;}
+  a.item b span{color:var(--seal);font-size:13px;letter-spacing:.15em;margin-right:10px;}
+  a.item p{font-size:15px;color:var(--muted);margin-top:2px;}
+
+  .hint{
+    margin-top:28px;background:var(--wash);border-left:4px solid var(--teal);
+    border-radius:0 8px 8px 0;padding:12px 16px;font-size:15px;color:var(--muted);
+  }
+  .hint b{color:var(--ink);}
+
+  footer{
+    margin-top:36px;border-top:1px solid var(--hair);padding-top:14px;
+    font-size:13px;color:var(--faint);line-height:1.9;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="kicker">AI 實作工作坊 · 課程素材</div>
+  <h1>讓 AI 認識你——<br>動手做出你的 <em>AI 好同事</em></h1>
+  <p class="sub">這裡是課程當天用到的所有素材。手機、電腦都能看；題卡與對照表可直接列印（A4）。</p>
+
+  <h2>實作題卡（自選深度，課堂上每人先做 Level 1）</h2>
+  <div class="list">
+    <a class="item" href="card-level1.html"><b><span>LEVEL 1 · 入門</span>個人脈絡卡</b><p>教 AI 認識你。前後對比，答案立刻不一樣。</p></a>
+    <a class="item" href="card-level2.html"><b><span>LEVEL 2 · 進階</span>專屬工作模板</b><p>把一件每週重複的事，變成一鍵完成。</p></a>
+    <a class="item" href="card-level3.html"><b><span>LEVEL 3 · 挑戰</span>團隊記憶檔</b><p>讓 AI 像老同事一樣，懂你們的術語和做法。</p></a>
+  </div>
+
+  <h2>工具對照表</h2>
+  <div class="list">
+    <a class="item" href="tools.html"><b>工具脈絡對照表</b><p>ChatGPT／Gemini／Claude／Copilot——你的脈絡卡要貼哪裡、怎麼永久保存、免費版限制。</p></a>
+  </div>
+
+  <h2>課程投影片</h2>
+  <div class="list">
+    <a class="item" href="slides.html"><b>講師投影片（線上版）</b><p>方向鍵或點擊換頁。回家複習用。</p></a>
+  </div>
+
+  <div class="hint">
+    <b>列印提示：</b>題卡與對照表已針對 A4 排版，瀏覽器「列印」即可，每份一頁。頁面顏色會自動配合你裝置的深／淺色模式；列印一律輸出淺色版。
+  </div>
+
+  <footer>
+    講師：林中致 Tom Lin ｜ 本課程為實作工作坊，無任何產品推銷；所有練習皆可在免費版 AI 工具完成。<br>
+    工具介面名稱查證日期：2026-07-10（各家官方說明中心）。
+  </footer>
+
+</div>
+</body>
+</html>

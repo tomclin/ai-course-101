@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>讓 AI 認識你 — 講師 Slides v1.2</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light dark;
+    --paper:#F7F6F2;   /* 紙白 */
+    --surface:#FFFFFF;
+    --ink:#17263B;     /* 墨藍 */
+    --muted:#3D4A5C;
+    --faint:#677180;
+    --teal:#2E7D6B;    /* 青碧 */
+    --seal:#B5432E;    /* 印章紅 */
+    --hair:#D9D6CE;
+    --on-accent:#FDFBF7;
+    --wash:#EDF3F1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#14181F;
+      --surface:#1C222B;
+      --ink:#E8E5DE;
+      --muted:#B4BCC7;
+      --faint:#87919D;
+      --teal:#4FA893;
+      --seal:#D4664F;
+      --hair:#2A3038;
+      --on-accent:#16100E;
+      --wash:#1A2420;
+    }
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--paper);color:var(--ink);}
+  body{font-family:'Noto Sans TC',sans-serif;line-height:1.6;}
+
+  .slide{
+    display:none;
+    width:100vw;height:100vh;
+    padding:6vh 7vw;
+    flex-direction:column;justify-content:center;
+    position:relative;overflow:hidden;
+  }
+  .slide.active{display:flex;}
+
+  .kicker{
+    font-size:clamp(12px,1.4vw,15px);letter-spacing:.35em;color:var(--faint);
+    text-transform:uppercase;margin-bottom:2.2vh;
+  }
+  h1{
+    font-family:'Noto Sans TC',sans-serif;font-weight:900;
+    font-size:clamp(34px,5.6vw,72px);line-height:1.28;
+  }
+  h1 em{font-style:normal;color:var(--teal);}
+  h1 .soft{color:var(--faint);}
+  .sub{margin-top:2.5vh;font-size:clamp(16px,2vw,24px);color:var(--muted);max-width:60ch;}
+  .sub strong{color:var(--teal);}
+  .seal-text{color:var(--seal);}
+
+  .stamp{
+    display:inline-block;background:var(--seal);color:var(--on-accent);
+    font-family:'Noto Sans TC',sans-serif;font-weight:700;
+    font-size:clamp(16px,2vw,24px);letter-spacing:.2em;
+    padding:.5em .9em;border-radius:3px;transform:rotate(-2deg);
+  }
+
+  .pagenum{
+    position:absolute;bottom:3.2vh;right:4vw;
+    font-size:13px;color:var(--faint);letter-spacing:.15em;
+  }
+  .srcline{
+    position:absolute;bottom:3.2vh;left:7vw;right:18vw;
+    font-size:clamp(12px,1.4vw,15px);color:var(--faint);
+  }
+
+  /* hands-up poll */
+  .poll{margin-top:4vh;display:grid;gap:1.6vh;max-width:880px;}
+  .poll div{
+    background:var(--surface);border:1px solid var(--hair);border-radius:10px;
+    padding:1.6vh 1.4em;font-size:clamp(16px,2vw,24px);
+    display:flex;gap:.7em;align-items:baseline;
+  }
+  .poll b{color:var(--teal);font-family:'Noto Sans TC',sans-serif;white-space:nowrap;}
+
+  /* story slides */
+  .story-num{
+    font-family:'Noto Sans TC',sans-serif;font-weight:900;
+    font-size:clamp(60px,10vw,130px);color:var(--wash);
+    -webkit-text-stroke:2px var(--teal);
+    line-height:1;margin-bottom:1vh;
+  }
+  .bigfact{
+    margin-top:3vh;font-family:'Noto Sans TC',sans-serif;font-weight:900;
+    font-size:clamp(40px,7vw,96px);color:var(--teal);line-height:1.2;
+  }
+  .bigfact small{display:block;font-family:'Noto Sans TC',sans-serif;font-weight:500;
+    font-size:clamp(16px,2vw,24px);color:var(--muted);margin-top:1vh;letter-spacing:.05em;}
+
+  /* quote slide */
+  .quote{
+    font-family:'Noto Sans TC',sans-serif;font-weight:900;
+    font-size:clamp(30px,4.6vw,60px);line-height:1.5;max-width:22em;
+  }
+  .quote em{font-style:normal;color:var(--seal);}
+  .quote .hl{color:var(--teal);}
+
+  /* theory rung slides */
+  .lvtag{
+    font-family:'Noto Sans TC',sans-serif;font-weight:700;
+    font-size:clamp(12px,1.4vw,15px);color:var(--faint);letter-spacing:.3em;
+    margin-bottom:1vh;
+  }
+  .rung2{
+    display:grid;grid-template-columns:1fr 1fr;gap:4vw;margin-top:3.5vh;align-items:start;
+  }
+  .rung2 .theory .src{font-size:clamp(12px,1.4vw,15px);color:var(--faint);margin:.6vh 0 1.2vh;}
+  .rung2 .theory p{font-size:clamp(16px,2vw,24px);color:var(--muted);max-width:30ch;}
+  .rung2 h3{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(20px,2.6vw,30px);}
+  .rung2 .ai{border-left:3px solid var(--teal);padding-left:2vw;}
+  .rung2 .ai .tag{font-size:clamp(12px,1.4vw,15px);letter-spacing:.28em;color:var(--teal);font-weight:700;margin-bottom:1vh;}
+  .rung2 .ai p{font-size:clamp(16px,2vw,24px);max-width:26ch;}
+  .rung2 .ai em{font-style:normal;color:var(--teal);font-weight:700;}
+  .ladder-mini{
+    position:absolute;top:6vh;right:7vw;display:flex;gap:6px;align-items:flex-end;
+  }
+  .ladder-mini span{width:26px;background:var(--hair);border-radius:2px;}
+  .ladder-mini span.on{background:var(--teal);}
+
+  /* level cards slide */
+  .cards3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2vw;margin-top:4vh;}
+  .cards3 div{
+    background:var(--surface);border:1px solid var(--hair);border-radius:12px;
+    padding:3vh 1.6em;
+  }
+  .cards3 .lv{font-size:clamp(12px,1.4vw,15px);letter-spacing:.25em;color:var(--seal);font-weight:700;margin-bottom:1vh;}
+  .cards3 b{display:block;font-family:'Noto Sans TC',sans-serif;font-size:clamp(20px,2.6vw,30px);margin-bottom:1vh;}
+  .cards3 p{font-size:clamp(16px,2vw,24px);color:var(--muted);}
+  .rulebar{
+    margin-top:3.5vh;background:var(--wash);border-left:4px solid var(--seal);
+    padding:1.6vh 1.4em;font-size:clamp(16px,2vw,24px);
+  }
+  .rulebar b{color:var(--seal);}
+
+  /* bench slide */
+  .bench{display:flex;gap:5vw;margin-top:4vh;align-items:center;justify-content:flex-start;}
+  .bench .rank{
+    text-align:center;background:var(--surface);border:1px solid var(--hair);
+    border-radius:14px;padding:3.5vh 3vw;
+  }
+  .bench .rank .n{
+    font-family:'Noto Sans TC',sans-serif;font-weight:900;
+    font-size:clamp(40px,6.5vw,88px);line-height:1.1;white-space:nowrap;
+  }
+  .bench .rank.good .n{color:var(--teal);}
+  .bench .rank.bad .n{color:var(--faint);}
+  .bench .rank p{font-size:clamp(16px,2vw,24px);color:var(--muted);margin-top:.6vh;}
+  .bench .vs{
+    font-family:'Noto Sans TC',sans-serif;font-weight:900;
+    font-size:clamp(20px,2.6vw,30px);color:var(--seal);white-space:nowrap;
+  }
+
+  /* CTA slide */
+  .cta-box{
+    margin-top:4vh;background:var(--surface);border:2px solid var(--teal);border-radius:14px;
+    padding:3.5vh 2em;max-width:760px;
+  }
+  .cta-box p{font-size:clamp(16px,2vw,24px);color:var(--muted);}
+  .cta-box b{color:var(--ink);}
+
+  .navhint{
+    position:fixed;bottom:3.2vh;left:50%;transform:translateX(-50%);
+    font-size:12px;color:var(--faint);letter-spacing:.1em;opacity:.8;
+  }
+
+  @media print{
+    :root{color-scheme:only light;}
+    .slide{display:flex;page-break-after:always;width:auto;height:96vh;}
+    .navhint{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 0 · 封面（入場時停留） -->
+<section class="slide active">
+  <div class="kicker">AI 實作工作坊 · 120 分鐘</div>
+  <h1>讓 AI 認識你<br><span class="soft">動手做出你的</span> <em>AI 好同事</em></h1>
+  <p class="sub">今天不是聽講座。兩小時後，你會帶著一個<strong>做好的東西</strong>回家。</p>
+  <div class="pagenum">讓 AI 認識你</div>
+</section>
+
+<!-- 1 · 暖場：四種起點 -->
+<section class="slide">
+  <div class="kicker">開始之前 · 舉手就好</div>
+  <h1>你是哪一種？</h1>
+  <div class="poll">
+    <div><b>一</b>問 AI 像用 Google——問一句、答一句</div>
+    <div><b>二</b>已經會用 AI 做簡報、修圖、寫文案</div>
+    <div><b>三</b>公司導入了 AI 工具，我也跟著在用</div>
+    <div><b>四</b>已經在教 AI 認識我，甚至幫團隊建立用法</div>
+  </div>
+  <p class="sub">四種人都在——等一下同一個練習、三種深度，<strong>每個人選自己的級距</strong>。</p>
+  <div class="pagenum">1 / 12</div>
+</section>
+
+<!-- 2 · 故事一：一個夢＋一個意外 -->
+<section class="slide">
+  <div class="story-num">壹</div>
+  <h1>一個要上大學的孩子，<br>給自己出了一道題</h1>
+  <p class="sub">三週後考汽車駕照筆試——「不如自己動手，和 AI 一起做一個練習 App。」<br>偏偏就在這時候，他的電腦壞了。<br><br><strong>手邊沒了電腦，夢卻不想停。</strong></p>
+  <div class="pagenum">2 / 12</div>
+</section>
+
+<!-- 3 · 故事二：他做了什麼 -->
+<section class="slide">
+  <div class="story-num">貳</div>
+  <h1>他沒有「問」，<br>他寫了一份<em>交接文件</em></h1>
+  <p class="sub">在 ChatGPT 裡把構想一步步規劃清楚、整理成交接文件，交給爸爸分派——一個 AI 負責想內容，一個 AI 負責寫程式。</p>
+  <div class="bigfact">不到一天，上線<small>1,090 題官方題庫 · 交叉比對四遍 · 每份交接附檢查碼——要的不只是「能用」，是「可信」</small></div>
+  <div class="pagenum">3 / 12</div>
+</section>
+
+<!-- 4 · 故事三：金句 -->
+<section class="slide">
+  <div class="kicker">這個孩子多學了什麼技術？沒有。</div>
+  <p class="quote">AI 是一位<br><span class="hl">第一天到職、聰明絕頂</span>、<br>但<em>完全不認識你</em>的新同事。</p>
+  <p class="sub">你不會對第一天報到的新同事丟一句話就要成品——你會先讓他認識你。AI 一樣。<br>看著孩子把「我想要」變成「我做到了」——這就是今天要給你的東西。</p>
+  <div class="pagenum">4 / 12</div>
+</section>
+
+<!-- 5 · 理論 壹：內隱 + 外化印章 -->
+<section class="slide">
+  <div class="ladder-mini"><span class="on" style="height:18px"></span><span style="height:30px"></span><span style="height:42px"></span><span style="height:54px"></span></div>
+  <div class="lvtag">第一層 · 你的大腦</div>
+  <h1>我們知道的，<br>比我們說得出的多。</h1>
+  <div class="rung2">
+    <div class="theory">
+      <div class="src">Polanyi《The Tacit Dimension》1966 · Nonaka 1995</div>
+      <p>判斷、直覺、承擔後果——這一層永遠是人的。</p>
+    </div>
+    <div class="ai">
+      <div class="tag">AI 時代重寫</div>
+      <p>AI 再強也讀不到這一層。<em>它不認識你，是預設值。</em></p>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:4vh;display:flex;align-items:center;gap:1.2em;flex-wrap:wrap;max-width:none"><span class="stamp">外 化 Externalization</span><span>整堂課只練一個動作：<strong>把 AI 不知道的東西，說給它聽。</strong></span></p>
+  <div class="pagenum">5 / 12</div>
+</section>
+
+<!-- 6 · 理論 貳：第二大腦 -->
+<section class="slide">
+  <div class="ladder-mini"><span style="height:18px"></span><span class="on" style="height:30px"></span><span style="height:42px"></span><span style="height:54px"></span></div>
+  <div class="lvtag">第二層 · 第二大腦</div>
+  <h1>從檔案櫃，<br>變成<em>會做事的隊友</em></h1>
+  <div class="rung2">
+    <div class="theory">
+      <div class="src">Forte《Building a Second Brain》2022 · Clark &amp; Chalmers 1998</div>
+      <p>把知識外部化到系統裡。過去是筆記檔案櫃——會記，不會動。</p>
+    </div>
+    <div class="ai">
+      <div class="tag">AI 時代重寫</div>
+      <p>差別不在工具多強，<em>在它認不認識你</em>。</p>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:4vh">Nonaka 三十年前證明：知識始於個人外化。AI 時代唯一改變的是——<strong>外化成本從「寫手冊給人看」暴跌到「講給 AI 聽」。</strong></p>
+  <div class="pagenum">6 / 12</div>
+</section>
+
+<!-- 7 · 理論 參：團隊的大腦 -->
+<section class="slide">
+  <div class="ladder-mini"><span style="height:18px"></span><span style="height:30px"></span><span class="on" style="height:42px"></span><span style="height:54px"></span></div>
+  <div class="lvtag">第三層 · 團隊的大腦</div>
+  <h1>高效團隊靠<br>「知道誰知道什麼」運作</h1>
+  <div class="rung2">
+    <div class="theory">
+      <div class="src">Wegner「Transactive Memory」1985</div>
+      <p>術語、SOP、慣例、決策史——團隊的共同記憶。</p>
+    </div>
+    <div class="ai">
+      <div class="tag">AI 時代重寫</div>
+      <p>把共同記憶餵給一個共享的 AI——<em>新人第一天就像老手</em>。</p>
+    </div>
+  </div>
+  <div class="pagenum">7 / 12</div>
+</section>
+
+<!-- 8 · 理論 肆：螺旋 + 指導方針 -->
+<section class="slide">
+  <div class="ladder-mini"><span style="height:18px"></span><span style="height:30px"></span><span style="height:42px"></span><span class="on" style="height:54px"></span></div>
+  <div class="lvtag">第四層 · 組織的大腦（Senge 1990 · Nonaka 螺旋）</div>
+  <h1>個人 → 團隊 → 組織<br><span class="soft">知識往上捲，從你開始。</span></h1>
+  <p class="sub" style="margin-top:4vh;border-top:3px double var(--ink);padding-top:3vh;max-width:none">
+    <span class="kicker" style="display:block;margin-bottom:1vh">Guiding Principle · 指導方針</span>
+    <span class="quote" style="font-size:clamp(28px,4.2vw,54px)">別練提問，<span class="hl">練交接</span>。</span><br>
+    <span style="font-size:clamp(12px,1.4vw,15px)">Stop prompting, start briefing.——對方對你的了解深度，決定互動品質。人如此，AI 也是。</span>
+  </p>
+  <div class="pagenum">8 / 12</div>
+</section>
+
+<!-- 9 · 實作說明 -->
+<section class="slide">
+  <div class="kicker">接下來 80 分鐘 · 全部動手</div>
+  <h1>同一個練習，三種深度</h1>
+  <div class="cards3">
+    <div><div class="lv">LEVEL 1 · 入門</div><b>個人脈絡卡</b><p>教 AI 認識你。前後對比，答案立刻不一樣。</p></div>
+    <div><div class="lv">LEVEL 2 · 進階</div><b>專屬工作模板</b><p>把一件每週重複的事，變成一鍵完成。</p></div>
+    <div><div class="lv">LEVEL 3 · 挑戰</div><b>團隊記憶檔</b><p>讓 AI 像老同事，懂你們的術語和做法。</p></div>
+  </div>
+  <div class="rulebar"><b>規則：</b>等一下<b>每個人都先做 Level 1</b>——你需要親身的前後對比。已設定過個人化／記憶的人，改做「乾淨對照」（對照表有教）。工具不限、免費版做得完。</div>
+  <div class="pagenum">9 / 12</div>
+</section>
+
+<!-- 10 · TerminalBench 橋段 -->
+<section class="slide">
+  <div class="kicker">剛才是體感 · 現在給數據</div>
+  <h1>同一個模型，<br>排名差了 <em>28 名</em></h1>
+  <div class="bench">
+    <div class="rank good"><div class="n">第 1 名</div><p>交接得好的團隊<br>成績 84.7%</p></div>
+    <div class="vs">同一顆大腦</div>
+    <div class="rank bad"><div class="n">第 29 名</div><p>交接得普通的團隊<br>成績 66.1%</p></div>
+  </div>
+  <p class="sub">大腦一樣，差別全部在「它多了解狀況」。<strong class="seal-text">可量測，不是感覺。</strong></p>
+  <div class="srcline">Terminal-Bench 2.0 排行榜 · Stanford × Laude Institute · tbench.ai · 2026-07 查證</div>
+  <div class="pagenum">10 / 12</div>
+</section>
+
+<!-- 11 · 收尾：螺旋放大 -->
+<section class="slide">
+  <div class="kicker">今天你做的事，放大來看</div>
+  <p class="quote">你今天的一次外化，<br>放大就是<span class="hl">團隊與事工的<br>共同記憶</span>。</p>
+  <p class="sub">想像你的小組、你的同工團隊，有一個懂你們術語、懂你們慣例的 AI 同事——它，從今天你這張脈絡卡開始。</p>
+  <div class="pagenum">11 / 12</div>
+</section>
+
+<!-- 12 · 行動呼籲 -->
+<section class="slide">
+  <div class="kicker">回家作業 · 只有一件事</div>
+  <h1>把脈絡卡，<em>用滿一週</em></h1>
+  <div class="cta-box">
+    <p><b>每次開新對話，先貼脈絡卡。</b>一週後你會回不去。<br>想存成永久記憶？照「工具對照表」設定一次就好。<br>最後一句誠實話：AI 認識你之後還是會錯——重要的事，核對再用。</p>
+  </div>
+  <p class="quote" style="margin-top:5vh;font-size:clamp(26px,4vw,52px)">別練提問，<span class="hl">練交接</span>。</p>
+  <div class="pagenum">12 / 12</div>
+</section>
+
+<div class="navhint">← → 方向鍵或點擊換頁</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  }
+  const hint=document.querySelector('.navhint');
+  function hideHint(){ if(hint) hint.style.display='none'; }
+  addEventListener('keydown',e=>{
+    hideHint();
+    if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)) show(i+1);
+    if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)) show(i-1);
+    if(e.key==='Home') show(0);
+    if(e.key==='End') show(slides.length-1);
+  });
+  addEventListener('click',e=>{
+    hideHint();
+    if(e.clientX>innerWidth/2) show(i+1); else show(i-1);
+  });
+</script>
+</body>
+</html>
