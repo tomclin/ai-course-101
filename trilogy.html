@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>AI 好同事三部曲 — 系列課程</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light dark;
+    --paper:#F7F6F2;   /* 紙白 */
+    --surface:#FFFFFF;
+    --ink:#17263B;     /* 墨藍 */
+    --muted:#3D4A5C;
+    --faint:#677180;
+    --teal:#2E7D6B;    /* 青碧 */
+    --seal:#B5432E;    /* 印章紅 */
+    --hair:#D9D6CE;
+    --on-accent:#FDFBF7;
+    --wash:#EDF3F1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#14181F;
+      --surface:#1C222B;
+      --ink:#E8E5DE;
+      --muted:#B4BCC7;
+      --faint:#87919D;
+      --teal:#4FA893;
+      --seal:#D4664F;
+      --hair:#2A3038;
+      --on-accent:#16100E;
+      --wash:#1A2420;
+    }
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--paper);}
+  body{
+    color:var(--ink);
+    font-family:'Noto Sans TC',sans-serif;
+    font-size:16px;line-height:1.7;
+    padding:48px 22px 64px;
+  }
+  .page{max-width:860px;margin:0 auto;}
+
+  .kicker{
+    display:inline-block;background:var(--seal);color:var(--on-accent);
+    font-size:13px;letter-spacing:.3em;padding:5px 14px;border-radius:999px;
+    margin-bottom:18px;font-weight:500;
+  }
+  h1{font-weight:900;font-size:clamp(30px,6vw,48px);line-height:1.25;}
+  h1 em{font-style:normal;color:var(--teal);}
+  .sub{margin-top:14px;font-size:16px;color:var(--muted);max-width:56ch;}
+  .sub strong{color:var(--teal);}
+
+  .spine{
+    margin:32px 0;padding:20px 24px;
+    background:var(--wash);border-left:4px solid var(--teal);
+    font-weight:700;font-size:clamp(17px,3vw,21px);line-height:1.6;
+  }
+  .spine small{display:block;font-weight:400;font-size:15px;color:var(--muted);margin-top:6px;}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px;}
+  .card{
+    background:var(--surface);border:1px solid var(--hair);border-radius:12px;
+    padding:20px 18px;display:flex;flex-direction:column;
+  }
+  .card .no{
+    font-weight:900;font-size:15px;letter-spacing:.2em;color:var(--seal);
+  }
+  .card h3{font-weight:900;font-size:19px;line-height:1.4;margin:10px 0 4px;}
+  .card .tag{font-size:13px;color:var(--teal);font-weight:700;letter-spacing:.05em;margin-bottom:8px;}
+  .card p{font-size:15px;color:var(--muted);}
+  .card .q{
+    margin-top:auto;padding-top:14px;font-size:14px;font-weight:700;color:var(--ink);
+    border-top:1px dashed var(--hair);margin-top:14px;
+  }
+  .card .status{
+    display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.15em;
+    padding:3px 10px;border-radius:999px;font-weight:700;align-self:flex-start;
+  }
+  .card .live{background:var(--teal);color:var(--on-accent);}
+  .card .soon{background:var(--wash);color:var(--faint);border:1px solid var(--hair);}
+
+  .story{
+    margin-top:28px;background:var(--surface);border:1px solid var(--hair);border-radius:12px;
+    padding:18px 22px;font-size:15px;color:var(--muted);
+  }
+  .story b{color:var(--ink);}
+  .story .lead{font-size:13px;letter-spacing:.2em;color:var(--seal);font-weight:700;display:block;margin-bottom:6px;}
+
+  h2{
+    font-weight:700;font-size:18px;
+    margin:32px 0 12px;display:flex;align-items:center;gap:10px;
+  }
+  h2::before{content:"";width:22px;height:3px;background:var(--teal);}
+
+  .promise{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  .promise div{
+    background:var(--wash);border:1px solid var(--hair);border-radius:10px;
+    padding:12px 14px;font-size:14px;color:var(--muted);text-align:center;
+  }
+  .promise b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px;}
+
+  .meta{
+    margin-top:32px;border-top:3px double var(--ink);padding-top:16px;
+    display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;
+    font-size:15px;color:var(--muted);
+  }
+  .meta b{color:var(--ink);margin-right:8px;}
+
+  footer{margin-top:24px;font-size:13px;color:var(--faint);}
+
+  @media (max-width:680px){
+    .cards,.promise,.meta{grid-template-columns:1fr;}
+  }
+  @media print{
+    :root{color-scheme:only light;}
+    body{padding:0;font-size:14px;}
+    .page{max-width:none;}
+    .card,.story,.promise div{break-inside:avoid;}
+    @page{size:A4;margin:11mm 12mm;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="kicker">AI 實作工作坊 · 系列三堂</div>
+  <h1>AI 好同事<em>三部曲</em></h1>
+  <p class="sub">AI 的價值，不在一次漂亮的回答，而在<strong>可交接、可託付、可信任</strong>的日常合作。三堂課，把一個聰明但不認識你的工具，變成一位靠得住的同事。</p>
+
+  <div class="spine">
+    從「讓 AI 認識你」，到「放手交給 AI」，到「換你認識 AI」。
+    <small>每堂課都動手實作、當天帶走成果；任何 AI 工具皆可，免費版可完成。</small>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <div class="no">第一堂 · 101</div>
+      <h3>讓 AI 認識你——<br>動手做出你的 AI 好同事</h3>
+      <div class="tag">把你的脈絡說清楚</div>
+      <p>AI 是一位聰明但完全不認識你的新同事。教它認識你，答案立刻不一樣——脈絡卡、工作模板、團隊記憶檔，三選一帶回家。</p>
+      <div class="q">問自己：我讓它認識我了嗎？</div>
+      <span class="status live">已開課 · 素材上線</span>
+    </article>
+    <article class="card">
+      <div class="no">第二堂 · 102</div>
+      <h3>放手交給 AI——<br>讓你的 AI 同事真正上工</h3>
+      <div class="tag">授權、檢查點、責任邊界</div>
+      <p>從「每一步都盯著」到「定點檢查」：學會把一件事完整交給 AI 做完，並且知道何時該讓它回來找你。放手，但不放養。</p>
+      <div class="q">問自己：哪些可以放手？何時該回報？</div>
+      <span class="status soon">籌備中</span>
+    </article>
+    <article class="card">
+      <div class="no">第三堂 · 103</div>
+      <h3>換你認識 AI——<br>看懂你的同事何時可靠、何時走鐘</h3>
+      <div class="tag">診斷漂移、拉回正軌</div>
+      <p>為什麼 AI 有時越講越遠、越講越篤定？學會看出它「正在延續什麼」，用四個動作把工作拉回來：導正、重開、求證、交回。</p>
+      <div class="q">問自己：它現在接續的，還是我要的工作嗎？</div>
+      <span class="status soon">籌備中</span>
+    </article>
+  </div>
+
+  <div class="story">
+    <span class="lead">一個真實故事，貫穿三堂課</span>
+    一個還沒上大學的孩子，電腦壞了也不停工——他把構想寫成一份「交接文件」（第一堂），爸爸接手分派給兩個 AI 分工、每份交接附上檢查碼（第二堂），1,090 題官方題庫交叉比對了四遍才敢上線（第三堂）。<b>不到一天，App 完成。</b>三堂課，就是把這個故事拆給你練。
+  </div>
+
+  <h2>三堂課共同的承諾</h2>
+  <div class="promise">
+    <div><b>當天動手</b>不是聽講座，離場時手上有做好的東西</div>
+    <div><b>免費版可完成</b>ChatGPT／Gemini／Claude／Copilot 皆可，不限品牌</div>
+    <div><b>誠實教學</b>AI 會錯——我們教你讓它更懂你，也教你驗收它</div>
+  </div>
+
+  <div class="meta">
+    <span><b>講師</b>林中致 Tom Lin</span>
+    <span><b>地點</b>卓越行道會飛航福音中心（桃園市大園區致遠一路15號1樓）</span>
+    <span><b>第一堂素材</b>tomclin.github.io/ai-course-101</span>
+    <span><b>開課與報名</b>由主辦單位陸續公告</span>
+  </div>
+
+  <footer>本系列為實作工作坊，無任何產品推銷；所有練習皆可在免費版 AI 工具完成。</footer>
+
+</div>
+</body>
+</html>
