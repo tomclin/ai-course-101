@@ -99,6 +99,11 @@
   }
   .take b{display:block;font-size:15px;margin-bottom:4px;}
   .take p{font-size:13px;color:var(--muted);}
+  .take .kw{margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+  .take .kw span{
+    font-size:11px;letter-spacing:.04em;color:var(--deep);
+    border:1px solid var(--hair);border-radius:999px;padding:2px 9px;white-space:nowrap;
+  }
 
   .prep{
     background:var(--soft);border-radius:10px;padding:18px 22px;
@@ -163,9 +168,9 @@
 
   <h2>當天你會帶回什麼（三選一，量力而為）</h2>
   <div class="take">
-    <div><div class="lv">入門</div><b>個人脈絡卡</b><p>教 AI 認識你。前後對比，答案立刻不一樣。</p></div>
-    <div><div class="lv">進階</div><b>專屬工作模板</b><p>把一件每週重複的事，變成一鍵完成的模板。</p></div>
-    <div><div class="lv">挑戰</div><b>團隊記憶檔</b><p>讓 AI 像老同事一樣，懂你們的術語和做法。</p></div>
+    <div><div class="lv">入門</div><b>個人脈絡卡</b><p>教 AI 認識你。前後對比，答案立刻不一樣。</p><div class="kw"><span>Context</span><span>Memory</span></div></div>
+    <div><div class="lv">進階</div><b>專屬工作模板</b><p>把一件每週重複的事，變成一鍵完成的模板。</p><div class="kw"><span>Prompt Template</span><span>自訂指令</span></div></div>
+    <div><div class="lv">挑戰</div><b>團隊記憶檔</b><p>讓 AI 像老同事一樣，懂你們的術語和做法。</p><div class="kw"><span>Team KB</span><span>Shared Context</span></div></div>
   </div>
 
   <h2>請準備</h2>
