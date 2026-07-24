@@ -106,7 +106,13 @@
   .pnav{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:0 auto 16px;max-width:820px;}
   .pnav a{font-size:13px;font-weight:700;color:var(--teal);border:1.5px solid var(--hair);border-radius:999px;padding:5px 14px;text-decoration:none;background:var(--surface);}
   .copybtn{display:inline-block;margin:8px 0 4px;font-family:'Noto Sans TC',sans-serif;font-size:15px;font-weight:700;color:var(--on-accent);background:var(--teal);border:none;border-radius:999px;padding:9px 20px;cursor:pointer;}
+  .ssot{margin:10px 0 14px;padding:9px 14px;background:var(--wash);border-left:3px solid var(--teal);font-size:14.5px;}
+  .grown{margin:14px 0;border:1px dashed var(--hair);border-radius:10px;padding:4px 14px;}
+  .grown summary{cursor:pointer;font-weight:700;color:var(--teal);font-size:14.5px;padding:6px 0;}
+  .grown p{font-size:13.5px;margin:7px 0;color:var(--muted);}
+  .grown .grownnote{color:var(--faint);}
   @media print{
+    .grown{display:none!important;}
     .pnav,.copybtn{display:none!important;}
     :root{color-scheme:only light;}
     body{padding:0;font-size:14px;line-height:1.45;}
@@ -188,12 +194,23 @@
     <p>第一輪它一定會答錯幾個地方——<b>那正是這個練習的目的</b>。每補一次脈絡，它就更像你們的人。這個「用→抓錯→補寫→再用」的循環，就是團隊把 AI 養成老同事的方法。</p>
   </div>
 
+  <p class="ssot"><b>團隊版怎麼存：</b>放一份共用文件（Google 文件或 LINE 群組記事本），指定一位<b>守版人</b>——全隊用同一份，要改只改那一份。</p>
   <div class="done">
     <div class="stamp">完成判準</div>
     <p>第二輪的產出<b>明顯優於第一輪</b>——而且你說得出是補了哪段脈絡造成的。</p>
   </div>
 
   <div class="advbox"><b>進階挑戰</b>① 加一欄「決策日誌」——不只寫我們怎麼做，寫下「為什麼」，讓它學判斷、不只學規則。② 紅隊測試：故意交辦一件違反慣例的任務，看它會不會出聲提醒。③ 約好治理：誰能改記憶檔？多久全隊檢視一次？</div>
+
+  <details class="grown">
+    <summary>養成三個月後，長這樣（點開看真實案例）</summary>
+    <div>
+      <p><b>【術語表】</b>（節選）・小家：主日後聚會用餐的小組　・訂餐事件：Google 日曆裡的訂餐任務，<b>唯一執行版</b>　・收款明細：發便當收錢用的名單，永遠放最後</p>
+      <p><b>【一條 SOP】</b>訂餐訊息進來 → 更新日曆<b>同一個</b>事件 → 內容固定四段（目標／店家／訂餐／收款）→ <b>每次重算總額並附檢查算式</b> → 日曆就是唯一真相</p>
+      <p><b>【兩個慣例決策】</b>・臨時改單，一律更新同一事件，不另開新的　・店家出狀況，一律先提備案、<b>等小家長確認才改</b></p>
+      <p class="grownnote">——這是講師家小家真實在用的版本，餵養了三個月。你今天寫的第一版比這蒼白，完全正常：每抓到一次錯、補一次脈絡，它就長大一格。（進階：Gemini 免費帳號可連 Google Workspace，讓 AI 直接建立日曆事件——對照表有記。）</p>
+    </div>
+  </details>
 
   <footer>
     <span>讓 AI 認識你 · 實作工作坊 · 題卡 3／3</span>
