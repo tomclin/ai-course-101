@@ -103,7 +103,11 @@
   .advbox b{color:var(--teal);margin-right:8px;}
   footer{margin-top:14px;font-size:13px;color:var(--faint);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
 
+  .pnav{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:0 auto 16px;max-width:820px;}
+  .pnav a{font-size:13px;font-weight:700;color:var(--teal);border:1.5px solid var(--hair);border-radius:999px;padding:5px 14px;text-decoration:none;background:var(--surface);}
+  .copybtn{display:inline-block;margin:8px 0 4px;font-family:'Noto Sans TC',sans-serif;font-size:15px;font-weight:700;color:var(--on-accent);background:var(--teal);border:none;border-radius:999px;padding:9px 20px;cursor:pointer;}
   @media print{
+    .pnav,.copybtn{display:none!important;}
     :root{color-scheme:only light;}
     body{padding:0;font-size:14px;line-height:1.45;}
     .sheet{max-width:none;}
@@ -130,6 +134,8 @@
 </style>
 </head>
 <body>
+<nav class="pnav"><a href="card-level2.html">← 上一卡：工作模板</a><a href="slides.html#9">▲ 返回投影片</a><a href="tools.html">工具對照表</a></nav>
+
 <div class="sheet">
 
   <header>
@@ -160,6 +166,7 @@
   </div>
 
   <h2>團隊記憶檔（一頁三欄）</h2>
+  <button class="copybtn" data-n="3">📋 複製空白模板——貼進 AI 對話框直接填</button>
   <div class="memo">
     <div class="row">
       <b>術語表<span class="hint">你們內部才懂的詞，各一行解釋</span></b>
@@ -194,5 +201,14 @@
   </footer>
 
 </div>
+<script>
+  var TPL="＝＝我們團隊的記憶檔＝＝\n【術語表】（內部才懂的詞，各一行解釋，寫 5–10 個）\n・\n・\n【一條 SOP】（一件固定流程的事，把步驟寫出來）\n・\n【兩個慣例決策】（遇到〇〇，我們一律△△）\n・\n・\n＝＝＝＝＝＝＝＝＝＝＝＝\n請先讀完以上記憶檔。第一個任務：【交辦一件事，例：寫這週的小組通知】\n";
+  document.querySelector('.copybtn').addEventListener('click',function(){
+    var b=this,t=TPL.replace(/\\n/g,String.fromCharCode(10));
+    function ok(){b.textContent='✓ 已複製——開你的 AI，貼上就能填';setTimeout(function(){b.textContent='📋 複製空白模板——貼進 AI 對話框直接填';},2600);}
+    function fb(){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();ok();}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb);}else{fb();}
+  });
+</script>
 </body>
 </html>
