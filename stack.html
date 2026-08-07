@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>AGENTIC 系統棧 × 吞併分析——把投資放在吞併到不了的地方</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light dark;
+    --paper:#F7F6F2; --surface:#FFFFFF; --ink:#17263B; --muted:#3D4A5C;
+    --faint:#677180; --teal:#2E7D6B; --seal:#B5432E; --hair:#D9D6CE;
+    --on-accent:#FDFBF7; --wash:#EDF3F1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#14181F; --surface:#1C222B; --ink:#E8E5DE; --muted:#B4BCC7;
+      --faint:#87919D; --teal:#4FA893; --seal:#D4664F; --hair:#2A3038;
+      --on-accent:#16100E; --wash:#1A2420;
+    }
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    font-family:'Noto Sans TC',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    padding:24px 16px 40px;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{ max-width:1120px; margin:0 auto; }
+
+  /* ============ header ============ */
+  header{ margin-bottom:24px; }
+  h1{ font-size:28px; font-weight:900; letter-spacing:.02em; }
+  .subtitle{ font-size:15px; font-weight:500; color:var(--teal); margin-top:6px; }
+  .thesis{ font-size:15px; font-weight:700; color:var(--seal); margin-top:10px; }
+
+  /* ============ bands ============ */
+  .band{
+    display:flex; gap:12px; margin-bottom:16px;
+    border-top:1px solid var(--hair); padding-top:14px;
+  }
+  .band.rented{ background:var(--wash); border-top:none; padding:14px 12px; border-radius:4px; }
+  .band-label{ flex:0 0 120px; }
+  .layer-no{ font-size:13px; font-weight:700; color:var(--faint); letter-spacing:.08em; }
+  .layer-en{ font-size:16px; font-weight:900; line-height:1.25; margin-top:2px; }
+  .layer-zh{ font-size:13px; font-weight:500; color:var(--muted); }
+  .layer-verdict{ font-size:12px; font-weight:500; color:var(--faint); margin-top:6px; line-height:1.5; }
+  .layer-rent-note{ font-size:12px; font-weight:700; color:var(--muted); margin-top:4px; }
+
+  .cells{
+    flex:1; display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:8px; align-items:stretch;
+  }
+
+  /* ============ cell types ============ */
+  .cell{
+    position:relative; background:var(--surface);
+    padding:10px 10px 9px; border-radius:3px; min-width:0;
+  }
+  .cell-name{ font-size:16px; font-weight:700; line-height:1.3; word-break:break-word; }
+  .cell-zh{ font-size:13px; font-weight:500; color:var(--muted); display:block; }
+  .cell-note{ font-size:12px; font-weight:400; color:var(--faint); margin-top:4px; line-height:1.5; }
+
+  .thin{ border:1.5px solid var(--muted); }
+  .thick{ border:4px solid var(--ink); }
+  .gov{ border:4px solid var(--seal); }
+  .split{
+    border:4px solid var(--ink);
+    background:linear-gradient(135deg, var(--wash) 0 50%, var(--surface) 50% 100%);
+  }
+  .rent{ border:1px solid var(--hair); background:var(--surface); }
+
+  .split .verdict-out{ font-size:13px; font-weight:400; color:var(--muted); margin-top:5px; line-height:1.5; }
+  .split .verdict-stay{ font-size:13px; font-weight:700; color:var(--ink); margin-top:3px; line-height:1.5; }
+
+  .tag-split{
+    position:absolute; top:-1px; left:-1px;
+    background:var(--seal); color:var(--on-accent);
+    font-size:11px; font-weight:700; line-height:1;
+    padding:3px 6px 4px; border-radius:0 0 3px 0;
+  }
+  .split .cell-name{ margin-top:14px; }
+  .tag-eaten{
+    position:absolute; top:-1px; right:-1px;
+    background:var(--muted); color:var(--paper);
+    font-size:11px; font-weight:700; line-height:1;
+    padding:3px 6px 4px; border-radius:0 0 0 3px;
+  }
+
+  /* Workflow Engine — visual focus */
+  .focus{ grid-column:span 2; padding:14px 14px 12px; }
+  .focus .cell-name{ font-size:18px; }
+
+  /* ============ legend ============ */
+  .legend{
+    margin-top:8px; border-top:1px solid var(--hair); padding-top:16px;
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:10px;
+  }
+  .legend-item{ display:flex; align-items:flex-start; gap:8px; min-width:0; }
+  .swatch{ flex:0 0 34px; height:24px; border-radius:2px; background:var(--surface); margin-top:2px; }
+  .swatch.thin{ border:1.5px solid var(--muted); }
+  .swatch.thick{ border:4px solid var(--ink); }
+  .swatch.gov{ border:4px solid var(--seal); }
+  .swatch.split{ border:4px solid var(--ink); background:linear-gradient(135deg, var(--muted) 0 50%, var(--surface) 50% 100%); position:relative; overflow:visible; }
+.swatch.split::after{ content:"拆"; position:absolute; top:-9px; left:-9px; background:var(--seal); color:var(--on-accent); font-size:10px; font-weight:700; line-height:1; padding:2px 4px; border-radius:4px; }
+  .swatch.rent{ border:1px solid var(--hair); background:var(--wash); }
+  .legend-name{ font-size:13px; font-weight:700; }
+  .legend-desc{ font-size:12px; font-weight:400; color:var(--faint); line-height:1.5; }
+
+  footer{
+    margin-top:24px; border-top:1px solid var(--hair); padding-top:12px;
+    font-size:13px; color:var(--faint); line-height:1.6;
+  }
+
+  /* ============ mobile ============ */
+  @media (max-width:640px){
+    .band{ flex-direction:column; gap:10px; }
+    .band-label{ flex:none; }
+    .layer-en{ display:inline; }
+    .layer-zh{ display:inline; margin-left:4px; }
+  }
+  @media (max-width:339px){
+    .focus{ grid-column:auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>AGENTIC 系統棧 × 吞併分析</h1>
+    <p class="subtitle">三部曲中觀圖——微觀看一個 agent(課程地圖),中觀看整個系統棧</p>
+    <p class="thesis">把投資放在吞併到不了的地方。</p>
+  </header>
+
+  <!-- ================= L1 GOVERNANCE ================= -->
+  <section class="band">
+    <div class="band-label">
+      <div class="layer-no">L1</div>
+      <div class="layer-en">GOVERNANCE</div>
+      <div class="layer-zh">治理</div>
+      <div class="layer-verdict">全層恆留——治理即護城河:裁判不住在球員身體裡</div>
+    </div>
+    <div class="cells">
+      <div class="cell gov"><div class="cell-name">Governance<span class="cell-zh">治理</span></div></div>
+      <div class="cell gov"><div class="cell-name">Safety<span class="cell-zh">安全</span></div></div>
+      <div class="cell gov"><div class="cell-name">Security<span class="cell-zh">資安</span></div></div>
+      <div class="cell gov"><div class="cell-name">Human Oversight<span class="cell-zh">人類監督</span></div></div>
+      <div class="cell gov"><div class="cell-name">Audit &amp; Logging<span class="cell-zh">稽核日誌</span></div></div>
+      <div class="cell gov"><div class="cell-name">Budget Control<span class="cell-zh">預算控制</span></div></div>
+      <div class="cell gov"><div class="cell-name">Compliance<span class="cell-zh">合規</span></div></div>
+      <div class="cell gov"><div class="cell-name">Risk Management<span class="cell-zh">風險管理</span></div></div>
+      <div class="cell gov"><div class="cell-name">Policy Engine<span class="cell-zh">政策引擎</span></div><div class="cell-note">執行機制會被吞;制定與裁罰權恆留</div></div>
+      <div class="cell thick"><div class="cell-name">Observability<span class="cell-zh">可觀測性</span></div><div class="cell-note">量測住在被量者體外</div></div>
+    </div>
+  </section>
+
+  <!-- ================= L2 ORCHESTRATION ================= -->
+  <section class="band">
+    <div class="band-label">
+      <div class="layer-no">L2</div>
+      <div class="layer-en">ORCHESTRATION</div>
+      <div class="layer-zh">編排</div>
+      <div class="layer-verdict">拆分示範層</div>
+    </div>
+    <div class="cells">
+      <div class="cell thin"><div class="cell-name">Planning<span class="cell-zh">規劃</span></div><div class="cell-note">原生化中</div></div>
+      <div class="cell thin"><div class="cell-name">Reasoning<span class="cell-zh">推理鏈</span></div><div class="cell-note">原生化中</div></div>
+      <div class="cell thin"><div class="cell-name">Goal Decomposition<span class="cell-zh">目標拆解</span></div><div class="cell-note">原生化中</div></div>
+      <div class="cell thin"><div class="cell-name">Task Scheduling<span class="cell-zh">任務排程</span></div><div class="cell-note">原生化中</div></div>
+      <div class="cell thin"><div class="cell-name">Reflection<span class="cell-zh">反思</span></div><div class="cell-note">自我批改內建中</div></div>
+      <div class="cell thin"><div class="cell-name">Feedback Loops<span class="cell-zh">回饋迴圈</span></div><div class="cell-note">自我批改內建中</div></div>
+      <div class="cell split focus"><span class="tag-split">拆</span>
+        <div class="cell-name">Workflow Engine<span class="cell-zh">工作流引擎</span></div>
+        <div class="verdict-out">⇣ 被吞:agent 內流程</div>
+        <div class="verdict-stay">⚓ 恆留:跨系統×組織權限×SLA 的編排</div>
+      </div>
+      <div class="cell thick"><div class="cell-name">Multi-Agent Coordination<span class="cell-zh">多代理協調</span></div><div class="cell-note">跨邊界=組織權限問題</div></div>
+      <div class="cell thick"><div class="cell-name">Delegation<span class="cell-zh">授權</span></div><div class="cell-note">授權是權柄的讓渡——只有人能授權</div></div>
+      <div class="cell thick"><div class="cell-name">Execution Control<span class="cell-zh">執行控制</span></div><div class="cell-note">動手永遠在外</div></div>
+      <div class="cell thick"><div class="cell-name">Recovery<span class="cell-zh">復原</span></div><div class="cell-note">狀態主權在外</div></div>
+      <div class="cell thick"><div class="cell-name">Rollback<span class="cell-zh">回滾</span></div><div class="cell-note">狀態主權在外</div></div>
+    </div>
+  </section>
+
+  <!-- ================= L3 AGENT CAPABILITIES ================= -->
+  <section class="band">
+    <div class="band-label">
+      <div class="layer-no">L3</div>
+      <div class="layer-en">AGENT CAPABILITIES</div>
+      <div class="layer-zh">代理能力</div>
+      <div class="layer-verdict">主吞併帶</div>
+    </div>
+    <div class="cells">
+      <div class="cell thin"><div class="cell-name">Prompt Strategies<span class="cell-zh">提示策略</span></div><div class="cell-note">套路會過時</div></div>
+      <div class="cell thin"><div class="cell-name">Self-Reflection<span class="cell-zh">自我反思</span></div><div class="cell-note">原生化中</div></div>
+      <div class="cell thin"><span class="tag-eaten">已吞</span><div class="cell-name">Multimodal<span class="cell-zh">多模態</span></div><div class="cell-note">已是原生能力</div></div>
+      <div class="cell split"><span class="tag-split">拆</span>
+        <div class="cell-name">Hallucination Mitigation<span class="cell-zh">幻覺抑制</span></div>
+        <div class="verdict-out">⇣ 被吞:抑制手段</div>
+        <div class="verdict-stay">⚓ 恆留:驗證權——不可自我作證</div>
+      </div>
+      <div class="cell split"><span class="tag-split">拆</span>
+        <div class="cell-name">Knowledge Retrieval<span class="cell-zh">知識檢索</span></div>
+        <div class="verdict-out">⇣ 被吞:組裝技藝</div>
+        <div class="verdict-stay">⚓ 恆留:素材</div>
+      </div>
+      <div class="cell split"><span class="tag-split">拆</span>
+        <div class="cell-name">RAG<span class="cell-zh">檢索增強</span></div>
+        <div class="verdict-out">⇣ 被吞:組裝技藝</div>
+        <div class="verdict-stay">⚓ 恆留:素材</div>
+      </div>
+      <div class="cell thin"><div class="cell-name">Tool Use<span class="cell-zh">工具使用</span></div><div class="cell-note">會呼叫已原生;工具即手,手恆在外</div></div>
+      <div class="cell thin"><div class="cell-name">Function Calling<span class="cell-zh">函式呼叫</span></div><div class="cell-note">呼叫原生,手在外</div></div>
+      <div class="cell gov"><div class="cell-name">Memory<span class="cell-zh">記憶</span></div><div class="cell-note">進權重=不可審計/不可攜/不可刪</div></div>
+      <div class="cell gov"><div class="cell-name">Long-term Memory<span class="cell-zh">長期記憶</span></div><div class="cell-note">同 Memory</div></div>
+      <div class="cell thin"><div class="cell-name">Working Memory<span class="cell-zh">工作記憶</span></div><div class="cell-note">context window,模型手持</div></div>
+      <div class="cell thick"><div class="cell-name">State Persistence<span class="cell-zh">狀態持久化</span></div><div class="cell-note">狀態主權與可稽核性在外</div></div>
+      <div class="cell gov"><div class="cell-name">Personalization<span class="cell-zh">個人化</span></div><div class="cell-note">個人記憶=隱私治理物</div></div>
+      <div class="cell thin"><div class="cell-name">Communication<span class="cell-zh">代理通訊</span></div><div class="cell-note">協定標準化中</div></div>
+    </div>
+  </section>
+
+  <!-- ================= L4 FOUNDATION MODELS ================= -->
+  <section class="band rented">
+    <div class="band-label">
+      <div class="layer-no">L4</div>
+      <div class="layer-en">FOUNDATION MODELS</div>
+      <div class="layer-zh">基礎模型</div>
+      <div class="layer-verdict">唯一會思考的地方,也是你唯一不該自建的地方——租</div>
+      <div class="layer-rent-note">租用即可,不投資差異化</div>
+    </div>
+    <div class="cells">
+      <div class="cell rent"><div class="cell-name">Large Language Models<span class="cell-zh">大型語言模型</span></div></div>
+      <div class="cell rent"><div class="cell-name">Reasoning Models<span class="cell-zh">推理模型</span></div></div>
+      <div class="cell rent"><div class="cell-name">Transformers<span class="cell-zh">變換器架構</span></div></div>
+      <div class="cell rent"><div class="cell-name">Embeddings<span class="cell-zh">嵌入</span></div></div>
+      <div class="cell rent"><div class="cell-name">Deep Learning<span class="cell-zh">深度學習</span></div></div>
+      <div class="cell rent"><div class="cell-name">Machine Learning<span class="cell-zh">機器學習</span></div></div>
+      <div class="cell rent"><div class="cell-name">Vector Representation<span class="cell-zh">向量表徵</span></div></div>
+      <div class="cell thin"><div class="cell-name">Fine-Tuning<span class="cell-zh">微調</span></div><div class="cell-note">多數場景被更強底模+context 取代</div></div>
+    </div>
+  </section>
+
+  <!-- ================= L5 INFRASTRUCTURE ================= -->
+  <section class="band rented">
+    <div class="band-label">
+      <div class="layer-no">L5</div>
+      <div class="layer-en">INFRASTRUCTURE</div>
+      <div class="layer-zh">基礎設施</div>
+      <div class="layer-verdict">商品層——租</div>
+      <div class="layer-rent-note">租用即可,不投資差異化</div>
+    </div>
+    <div class="cells">
+      <div class="cell rent"><div class="cell-name">GPU / TPU<span class="cell-zh">運算晶片</span></div></div>
+      <div class="cell rent"><div class="cell-name">Inference Engine<span class="cell-zh">推論引擎</span></div></div>
+      <div class="cell rent"><div class="cell-name">Storage<span class="cell-zh">儲存</span></div></div>
+      <div class="cell rent"><div class="cell-name">Cloud Runtime<span class="cell-zh">雲端執行</span></div></div>
+      <div class="cell rent"><div class="cell-name">Containers<span class="cell-zh">容器</span></div></div>
+      <div class="cell rent"><div class="cell-name">Networking<span class="cell-zh">網路</span></div></div>
+      <div class="cell rent"><div class="cell-name">API Gateway<span class="cell-zh">API 閘道</span></div></div>
+      <div class="cell thin"><div class="cell-name">Vector Database<span class="cell-zh">向量資料庫</span></div><div class="cell-note">被平台與長 context 吞</div></div>
+      <div class="cell thick"><div class="cell-name">Monitoring<span class="cell-zh">監控</span></div><div class="cell-note">與 L1 可觀測性成對</div></div>
+    </div>
+  </section>
+
+  <!-- ================= legend ================= -->
+  <section class="legend">
+    <div class="legend-item"><span class="swatch thin"></span>
+      <div><div class="legend-name">細框</div><div class="legend-desc">正被/可能被模型吞併</div></div>
+    </div>
+    <div class="legend-item"><span class="swatch thick"></span>
+      <div><div class="legend-name">粗框</div><div class="legend-desc">恆留模型之外=你的投資</div></div>
+    </div>
+    <div class="legend-item"><span class="swatch gov"></span>
+      <div><div class="legend-name">治理框</div><div class="legend-desc">非技術護城河</div></div>
+    </div>
+    <div class="legend-item"><span class="swatch split"></span>
+      <div><div class="legend-name">拆格</div><div class="legend-desc">一格兩判:半被吞、半恆留</div></div>
+    </div>
+    <div class="legend-item"><span class="swatch rent"></span>
+      <div><div class="legend-name">租用格</div><div class="legend-desc">租用即可,不投資差異化</div></div>
+    </div>
+  </section>
+
+  <p style="text-align:center;font-size:13px;margin:14px 0 0;"><a href="map.html" style="color:var(--teal);font-weight:700;text-decoration:none;">成對閱讀 → 微觀圖:AGENT＝MODEL＋HARNESS(一個 agent 的解剖)</a></p>
+  <footer>
+    基礎五層架構:Tom Lin 與 ChatGPT 共作(2026-07)· 吞併分析與投資判讀:本課程框架另加,非原架構所述 · v1.0(2026-08-08)
+  </footer>
+
+</div>
+</body>
+</html>
