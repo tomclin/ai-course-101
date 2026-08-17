@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
-<title>讓 AI 認識你 — 講師 Slides v1.2</title>
+<title>讓 AI 認識你 — 講師 Slides v1.3</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -19,6 +19,7 @@
     --hair:#D9D6CE;
     --on-accent:#FDFBF7;
     --wash:#EDF3F1;--qrpaper:#FFFFFF;--qrink:#000000;
+    --imgpaper:#F7F6F2;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -32,6 +33,7 @@
       --hair:#2A3038;
       --on-accent:#16100E;
       --wash:#1A2420;--qrpaper:#FFFFFF;--qrink:#000000;
+      --imgpaper:#F7F6F2;
     }
   }
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -186,6 +188,16 @@
     font-size:12px;color:var(--faint);letter-spacing:.1em;opacity:.8;
   }
 
+  /* 圖片 slide（冷開場＋收尾三圖） */
+  .slide-img{
+    background:var(--imgpaper);padding:0;
+    justify-content:center;align-items:center;
+  }
+  .slide-img img{
+    max-width:100vw;max-height:100vh;width:auto;height:auto;
+    object-fit:contain;display:block;
+  }
+
   @media print{
     :root{color-scheme:only light;}
     .slide{display:flex;page-break-after:always;width:auto;height:96vh;}
@@ -203,7 +215,10 @@
   <div class="pagenum">讓 AI 認識你</div>
 </section>
 
-<!-- 1 · 暖場：四種起點 -->
+<!-- 1 · 冷開場：外化的階梯 -->
+<section class="slide slide-img"><img src="opening-ladder.png" alt="外化的階梯：文字、圖書館、印刷術、機器、電腦、網路——每一次搬出去，都要學一種新的本事"><div class="pagenum">1 / 16</div></section>
+
+<!-- 2 · 暖場：四種起點 -->
 <section class="slide">
   <div class="kicker">開始之前 · 舉手就好</div>
   <h1>你是哪一種？</h1>
@@ -214,35 +229,35 @@
     <div><b>四</b>已經在教 AI 認識我，甚至幫團隊建立用法</div>
   </div>
   <p class="sub">四種人都在。等一下同一個練習、三種深度，<strong>每個人選自己的級距</strong>。</p>
-  <div class="pagenum">1 / 12</div>
+  <div class="pagenum">2 / 16</div>
 </section>
 
-<!-- 2 · 故事一：一個夢＋一個意外 -->
+<!-- 3 · 故事一：一個夢＋一個意外 -->
 <section class="slide">
   <div class="story-num">壹</div>
   <h1>一個要上大學的孩子，<br>給自己出了一道題</h1>
   <p class="sub">三週後考汽車駕照筆試——「不如自己動手，和 AI 一起做一個練習 App。」<br>偏偏就在這時候，他的電腦壞了。<br><br><strong>手邊沒了電腦，夢卻不想停。</strong></p>
-  <div class="pagenum">2 / 12</div>
+  <div class="pagenum">3 / 16</div>
 </section>
 
-<!-- 3 · 故事二：他做了什麼 -->
+<!-- 4 · 故事二：他做了什麼 -->
 <section class="slide">
   <div class="story-num">貳</div>
   <h1>他沒有「問」，<br>他寫了一份<em>交接文件</em></h1>
   <p class="sub">在 ChatGPT 裡把構想一步步規劃清楚、整理成交接文件，交給爸爸分派——一個 AI 負責想內容，一個 AI 負責寫程式。</p>
   <div class="bigfact">不到一天，上線<small>1,090 題官方題庫 · 交叉比對四遍 · 每份交接附檢查碼——要的不只是「能用」，是「可信」。三週後上場：筆試一次過關。</small></div>
-  <div class="pagenum">3 / 12</div>
+  <div class="pagenum">4 / 16</div>
 </section>
 
-<!-- 4 · 故事三：金句 -->
+<!-- 5 · 故事三：金句 -->
 <section class="slide">
   <div class="kicker">這個孩子多學了什麼技術？沒有。</div>
   <p class="quote">AI 是一位<br><span class="hl">第一天到職、聰明絕頂</span>、<br>但<em>完全不認識你</em>的新同事。</p>
   <p class="sub">你不會對第一天報到的新同事丟一句話就要成品，你會先讓他認識你。AI 一樣。<br>看著孩子把「我想要」變成「我做到了」——這就是今天要給你的東西。</p>
-  <div class="pagenum">4 / 12</div>
+  <div class="pagenum">5 / 16</div>
 </section>
 
-<!-- 5 · 理論 壹：內隱 + 外化印章 -->
+<!-- 6 · 理論 壹：內隱 + 外化印章 -->
 <section class="slide">
   <div class="ladder-mini"><span class="on" style="height:18px"></span><span style="height:30px"></span><span style="height:42px"></span><span style="height:54px"></span></div>
   <div class="lvtag">第一層 · 你的大腦</div>
@@ -258,10 +273,10 @@
     </div>
   </div>
   <p class="sub" style="margin-top:4vh;display:flex;align-items:center;gap:1.2em;flex-wrap:wrap;max-width:none"><span class="stamp">外 化 Externalization</span><span>整堂課只練一個動作：<strong>把 AI 不知道的東西，說給它聽。</strong></span></p>
-  <div class="pagenum">5 / 12</div>
+  <div class="pagenum">6 / 16</div>
 </section>
 
-<!-- 6 · 理論 貳：第二大腦 -->
+<!-- 7 · 理論 貳：第二大腦 -->
 <section class="slide">
   <div class="ladder-mini"><span style="height:18px"></span><span class="on" style="height:30px"></span><span style="height:42px"></span><span style="height:54px"></span></div>
   <div class="lvtag">第二層 · 第二大腦</div>
@@ -277,10 +292,10 @@
     </div>
   </div>
   <p class="sub" style="margin-top:4vh">Nonaka 三十年前證明知識始於個人外化；AI 時代唯一改變的是——<strong>外化成本從「寫手冊給人看」暴跌到「講給 AI 聽」。</strong></p>
-  <div class="pagenum">6 / 12</div>
+  <div class="pagenum">7 / 16</div>
 </section>
 
-<!-- 7 · 理論 參：團隊的大腦 -->
+<!-- 8 · 理論 參：團隊的大腦 -->
 <section class="slide">
   <div class="ladder-mini"><span style="height:18px"></span><span style="height:30px"></span><span class="on" style="height:42px"></span><span style="height:54px"></span></div>
   <div class="lvtag">第三層 · 團隊的大腦</div>
@@ -295,10 +310,10 @@
       <p>把共同記憶餵給一個共享的 AI——<em>新人第一天就像老手</em>。</p>
     </div>
   </div>
-  <div class="pagenum">7 / 12</div>
+  <div class="pagenum">8 / 16</div>
 </section>
 
-<!-- 8 · 理論 肆：螺旋 + 指導方針 -->
+<!-- 9 · 理論 肆：螺旋 + 指導方針 -->
 <section class="slide">
   <div class="ladder-mini"><span style="height:18px"></span><span style="height:30px"></span><span style="height:42px"></span><span class="on" style="height:54px"></span></div>
   <div class="lvtag">第四層 · 組織的大腦（Senge 1990 · Nonaka 螺旋）</div>
@@ -309,10 +324,10 @@
     <span class="quote" style="font-size:clamp(28px,4.2vw,54px)">別練提問，<span class="hl">練交接</span>。</span><br>
     <span style="font-size:clamp(12px,1.4vw,15px)">Stop prompting, start briefing.——對方對你的了解深度，決定互動品質。人如此，AI 也是。</span>
   </p>
-  <div class="pagenum">8 / 12</div>
+  <div class="pagenum">9 / 16</div>
 </section>
 
-<!-- 9 · 實作說明 -->
+<!-- 10 · 實作說明 -->
 <section class="slide">
   <div class="kicker">接下來 · 全部動手</div>
   <h1>同一個練習，三種深度</h1>
@@ -323,10 +338,10 @@
   </div>
   <div class="rulebar"><b>規則：</b>等一下<b>每個人都先做 Level 1</b>——你需要親身的前後對比。已設定過個人化／記憶的人，改做「乾淨對照」（<a href="tools.html">對照表</a>有教）。工具不限、免費版做得完。</div>
   <a class="l4key" href="card-level4.html" aria-label="隱藏卡 L4（講師用）">L4 ⌁</a>
-  <div class="pagenum">9 / 12</div>
+  <div class="pagenum">10 / 16</div>
 </section>
 
-<!-- 10 · TerminalBench 橋段 -->
+<!-- 11 · TerminalBench 橋段 -->
 <section class="slide">
   <div class="kicker">剛才是體感 · 現在給數據</div>
   <h1>同一個模型，<br>排名差了 <em>28 名</em></h1>
@@ -337,18 +352,18 @@
   </div>
   <p class="sub">大腦一樣，差別全部在「它多了解狀況」。<strong class="seal-text">可量測，不是感覺。</strong></p>
   <div class="srcline">Terminal-Bench 2.0 排行榜 · Stanford × Laude Institute · tbench.ai · 2026-07 查證</div>
-  <div class="pagenum">10 / 12</div>
+  <div class="pagenum">11 / 16</div>
 </section>
 
-<!-- 11 · 收尾：螺旋放大 -->
+<!-- 12 · 收尾：螺旋放大 -->
 <section class="slide">
   <div class="kicker">今天你做的事，放大來看</div>
   <p class="quote">你今天的一次外化，<br>放大就是<span class="hl">團隊與事工的<br>共同記憶</span>。</p>
   <p class="sub">想像你的小組、你的同工團隊，有一個懂你們術語、懂你們慣例的 AI 同事——它，從今天你這張脈絡卡開始。</p>
-  <div class="pagenum">11 / 12</div>
+  <div class="pagenum">12 / 16</div>
 </section>
 
-<!-- 12 · 行動呼籲 -->
+<!-- 13 · 行動呼籲 -->
 <section class="slide">
   <div class="kicker">回家作業 · 只有一件事</div>
   <h1>把脈絡卡，<em>用滿一週</em></h1>
@@ -356,8 +371,17 @@
     <p><b>每次開新對話，先貼脈絡卡。</b>一週後你會回不去。<br>想存成永久記憶？照「工具對照表」設定一次就好。<br>最後一句誠實話：AI 認識你之後還是會錯——重要的事，核對再用。</p>
   </div>
   <p class="quote" style="margin-top:5vh;font-size:clamp(26px,4vw,52px)">別練提問，<span class="hl">練交接</span>。</p>
-  <div class="pagenum">12 / 12</div>
+  <div class="pagenum">13 / 16</div>
 </section>
+
+<!-- 14 · 收尾經文一：巴別塔 -->
+<section class="slide slide-img"><img src="opening-babel.png" alt="巴別塔：一種語言，人卻散了——創世記 11:6"><div class="pagenum">14 / 16</div></section>
+
+<!-- 15 · 收尾經文二：五旬節的燈 -->
+<section class="slide slide-img"><img src="opening-lamps.png" alt="五旬節的燈：很多語言，人卻懂了——使徒行傳 2:6"><div class="pagenum">15 / 16</div></section>
+
+<!-- 16 · 收尾定錨：個人脈絡卡與鋼筆 -->
+<section class="slide slide-img"><img src="opening-card.png" alt="個人脈絡卡與鋼筆：不是讓你去學機器的話，是讓機器聽懂你的話"><div class="pagenum">16 / 16</div></section>
 
 <div class="navhint">← → 方向鍵或點擊換頁</div>
 
