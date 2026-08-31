@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
-<title>讓 AI 認識你 — 講師 Slides v1.3</title>
+<title>讓 AI 認識你 — 講師 Slides v2.0</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -38,7 +38,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{background:var(--paper);color:var(--ink);}
-  body{font-family:'Noto Sans TC',sans-serif;line-height:1.6;}
+  body{font-family:'Noto Sans TC',sans-serif;line-height:1.5;}
 
   .slide{
     display:none;
@@ -50,23 +50,23 @@
   .slide.active{display:flex;}
 
   .kicker{
-    font-size:clamp(12px,1.4vw,15px);letter-spacing:.35em;color:var(--faint);
+    font-size:clamp(22px,1.25vw,24px);letter-spacing:.2em;color:var(--faint);
     text-transform:uppercase;margin-bottom:2.2vh;
   }
   h1{
     font-family:'Noto Sans TC',sans-serif;font-weight:900;
-    font-size:clamp(34px,5.6vw,72px);line-height:1.28;
+    font-size:clamp(48px,3.75vw,72px);line-height:1.2;
   }
   h1 em{font-style:normal;color:var(--teal);}
   h1 .soft{color:var(--faint);}
-  .sub{margin-top:2.5vh;font-size:clamp(16px,2vw,24px);color:var(--muted);max-width:60ch;}
+  .sub{margin-top:2.5vh;font-size:clamp(28px,1.67vw,32px);color:var(--muted);max-width:42ch;}
   .sub strong{color:var(--teal);}
   .seal-text{color:var(--seal);}
 
   .stamp{
     display:inline-block;background:var(--seal);color:var(--on-accent);
     font-family:'Noto Sans TC',sans-serif;font-weight:700;
-    font-size:clamp(16px,2vw,24px);letter-spacing:.2em;
+    font-size:clamp(28px,1.67vw,32px);letter-spacing:.2em;
     padding:.5em .9em;border-radius:3px;transform:rotate(-2deg);
   }
 
@@ -80,15 +80,15 @@
   }
   .l4key:hover{opacity:1;color:var(--teal);}
   .srcline{
-    position:absolute;bottom:3.2vh;left:7vw;right:18vw;
-    font-size:clamp(12px,1.4vw,15px);color:var(--faint);
+    position:absolute;bottom:3.2vh;left:7vw;right:22vw;
+    font-size:clamp(20px,1.15vw,22px);color:var(--faint);
   }
 
   /* hands-up poll */
   .poll{margin-top:4vh;display:grid;gap:1.6vh;max-width:880px;}
   .poll div{
     background:var(--surface);border:1px solid var(--hair);border-radius:10px;
-    padding:1.6vh 1.4em;font-size:clamp(16px,2vw,24px);
+    padding:1.6vh 1.4em;font-size:clamp(28px,1.67vw,32px);
     display:flex;gap:.7em;align-items:baseline;
   }
   .poll b{color:var(--teal);font-family:'Noto Sans TC',sans-serif;white-space:nowrap;}
@@ -96,21 +96,21 @@
   /* story slides */
   .story-num{
     font-family:'Noto Sans TC',sans-serif;font-weight:900;
-    font-size:clamp(60px,10vw,130px);color:var(--wash);
+    font-size:clamp(64px,5vw,96px);color:var(--wash);
     -webkit-text-stroke:2px var(--teal);
     line-height:1;margin-bottom:1vh;
   }
   .bigfact{
     margin-top:3vh;font-family:'Noto Sans TC',sans-serif;font-weight:900;
-    font-size:clamp(40px,7vw,96px);color:var(--teal);line-height:1.2;
+    font-size:clamp(48px,3.75vw,72px);color:var(--teal);line-height:1.2;
   }
   .bigfact small{display:block;font-family:'Noto Sans TC',sans-serif;font-weight:500;
-    font-size:clamp(16px,2vw,24px);color:var(--muted);margin-top:1vh;letter-spacing:.05em;}
+    font-size:clamp(28px,1.67vw,32px);color:var(--muted);margin-top:1vh;letter-spacing:.05em;}
 
   /* quote slide */
   .quote{
     font-family:'Noto Sans TC',sans-serif;font-weight:900;
-    font-size:clamp(30px,4.6vw,60px);line-height:1.5;max-width:22em;
+    font-size:clamp(38px,2.9vw,56px);line-height:1.4;max-width:18em;
   }
   .quote em{font-style:normal;color:var(--seal);}
   .quote .hl{color:var(--teal);}
@@ -118,18 +118,17 @@
   /* theory rung slides */
   .lvtag{
     font-family:'Noto Sans TC',sans-serif;font-weight:700;
-    font-size:clamp(12px,1.4vw,15px);color:var(--faint);letter-spacing:.3em;
+    font-size:clamp(22px,1.25vw,24px);color:var(--faint);letter-spacing:.18em;
     margin-bottom:1vh;
   }
   .rung2{
     display:grid;grid-template-columns:1fr 1fr;gap:4vw;margin-top:3.5vh;align-items:start;
   }
-  .rung2 .theory .src{font-size:clamp(12px,1.4vw,15px);color:var(--faint);margin:.6vh 0 1.2vh;}
-  .rung2 .theory p{font-size:clamp(16px,2vw,24px);color:var(--muted);max-width:30ch;}
-  .rung2 h3{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(20px,2.6vw,30px);}
-  .rung2 .ai{border-left:3px solid var(--teal);padding-left:2vw;}
-  .rung2 .ai .tag{font-size:clamp(12px,1.4vw,15px);letter-spacing:.28em;color:var(--teal);font-weight:700;margin-bottom:1vh;}
-  .rung2 .ai p{font-size:clamp(16px,2vw,24px);max-width:26ch;}
+  .rung2 .theory .src{font-size:clamp(20px,1.15vw,22px);color:var(--faint);margin:.6vh 0 1.2vh;}
+  .rung2 .theory p{font-size:clamp(28px,1.67vw,32px);color:var(--muted);max-width:20ch;}
+    .rung2 .ai{border-left:3px solid var(--teal);padding-left:2vw;}
+  .rung2 .ai .tag{font-size:clamp(22px,1.25vw,24px);letter-spacing:.16em;color:var(--teal);font-weight:700;margin-bottom:1vh;}
+  .rung2 .ai p{font-size:clamp(28px,1.67vw,32px);max-width:18ch;}
   .rung2 .ai em{font-style:normal;color:var(--teal);font-weight:700;}
   .ladder-mini{
     position:absolute;top:6vh;right:7vw;display:flex;gap:6px;align-items:flex-end;
@@ -143,17 +142,17 @@
     background:var(--surface);border:1px solid var(--hair);border-radius:12px;
     padding:3vh 1.6em;
   }
-  .cards3 .lv{font-size:clamp(12px,1.4vw,15px);letter-spacing:.25em;color:var(--seal);font-weight:700;margin-bottom:1vh;}
-  .cards3 b{display:block;font-family:'Noto Sans TC',sans-serif;font-size:clamp(20px,2.6vw,30px);margin-bottom:1vh;}
-  .cards3 p{font-size:clamp(16px,2vw,24px);color:var(--muted);}
+  .cards3 .lv{font-size:clamp(22px,1.25vw,24px);letter-spacing:.15em;color:var(--seal);font-weight:700;margin-bottom:1vh;}
+  .cards3 b{display:block;font-family:'Noto Sans TC',sans-serif;font-size:clamp(30px,2.1vw,40px);margin-bottom:1vh;}
+  .cards3 p{font-size:clamp(28px,1.67vw,32px);color:var(--muted);}
   .cards3 a.cardgo{display:block;text-decoration:none;color:inherit;}
   .qtile{display:block;margin-top:2vh;background:var(--qrpaper);border-radius:8px;padding:5px;width:min(10vw,13vh);aspect-ratio:1;}
   .qtile svg{display:block;width:100%;height:100%;}
-  .scanhint{display:block;font-size:clamp(11px,1.2vw,13px);color:var(--faint);margin-top:1vh;}
+  .scanhint{display:block;font-size:clamp(22px,1.25vw,24px);color:var(--faint);margin-top:1vh;}
   .rulebar a{color:var(--teal);font-weight:700;}
   .rulebar{
     margin-top:3.5vh;background:var(--wash);border-left:4px solid var(--seal);
-    padding:1.6vh 1.4em;font-size:clamp(16px,2vw,24px);
+    padding:1.6vh 1.4em;font-size:clamp(28px,1.67vw,32px);
   }
   .rulebar b{color:var(--seal);}
 
@@ -165,14 +164,14 @@
   }
   .bench .rank .n{
     font-family:'Noto Sans TC',sans-serif;font-weight:900;
-    font-size:clamp(40px,6.5vw,88px);line-height:1.1;white-space:nowrap;
+    font-size:clamp(48px,3.75vw,72px);line-height:1.1;white-space:nowrap;
   }
   .bench .rank.good .n{color:var(--teal);}
   .bench .rank.bad .n{color:var(--faint);}
-  .bench .rank p{font-size:clamp(16px,2vw,24px);color:var(--muted);margin-top:.6vh;}
+  .bench .rank p{font-size:clamp(28px,1.67vw,32px);color:var(--muted);margin-top:.6vh;}
   .bench .vs{
     font-family:'Noto Sans TC',sans-serif;font-weight:900;
-    font-size:clamp(20px,2.6vw,30px);color:var(--seal);white-space:nowrap;
+    font-size:clamp(30px,2.1vw,40px);color:var(--seal);white-space:nowrap;
   }
 
   /* CTA slide */
@@ -180,7 +179,7 @@
     margin-top:4vh;background:var(--surface);border:2px solid var(--teal);border-radius:14px;
     padding:3.5vh 2em;max-width:760px;
   }
-  .cta-box p{font-size:clamp(16px,2vw,24px);color:var(--muted);}
+  .cta-box p{font-size:clamp(28px,1.67vw,32px);color:var(--muted);}
   .cta-box b{color:var(--ink);}
 
   .navhint{
@@ -223,12 +222,11 @@
   <div class="kicker">開始之前 · 舉手就好</div>
   <h1>你是哪一種？</h1>
   <div class="poll">
-    <div><b>一</b>問 AI 像用 Google——問一句、答一句</div>
-    <div><b>二</b>已經會用 AI 做簡報、修圖、寫文案</div>
-    <div><b>三</b>公司導入了 AI 工具，我也跟著在用</div>
-    <div><b>四</b>已經在教 AI 認識我，甚至幫團隊建立用法</div>
+    <div><b>一</b>問 AI 像用 Google</div>
+    <div><b>二</b>會用 AI 做簡報、修圖</div>
+    <div><b>三</b>公司導入，跟著在用</div>
+    <div><b>四</b>在教 AI 認識我</div>
   </div>
-  <p class="sub">四種人都在。等一下同一個練習、三種深度，<strong>每個人選自己的級距</strong>。</p>
   <div class="pagenum">2 / 16</div>
 </section>
 
@@ -236,7 +234,7 @@
 <section class="slide">
   <div class="story-num">壹</div>
   <h1>一個要上大學的孩子，<br>給自己出了一道題</h1>
-  <p class="sub">三週後考汽車駕照筆試——「不如自己動手，和 AI 一起做一個練習 App。」<br>偏偏就在這時候，他的電腦壞了。<br><br><strong>手邊沒了電腦，夢卻不想停。</strong></p>
+  <p class="sub">三週後駕照筆試——「和 AI 做一個練習 App。」<br>偏偏，電腦壞了。<br><br><strong>手邊沒了電腦，夢卻不想停。</strong></p>
   <div class="pagenum">3 / 16</div>
 </section>
 
@@ -244,14 +242,14 @@
 <section class="slide">
   <div class="story-num">貳</div>
   <h1>他沒有「問」，<br>他寫了一份<em>交接文件</em></h1>
-  <p class="sub">在 ChatGPT 裡把構想一步步規劃清楚、整理成交接文件，交給爸爸分派——一個 AI 負責想內容，一個 AI 負責寫程式。</p>
-  <div class="bigfact">不到一天，上線<small>1,090 題官方題庫 · 交叉比對四遍 · 每份交接附檢查碼——要的不只是「能用」，是「可信」。三週後上場：筆試一次過關。</small></div>
+  <p class="sub">構想規劃清楚 → 交接文件 → 爸爸分派給兩個 AI。</p>
+  <div class="bigfact">不到一天，上線<small>1,090 題官方題庫 · 比對四遍 · 附檢查碼——要的是「可信」。筆試，一次過關。</small></div>
   <div class="pagenum">4 / 16</div>
 </section>
 
 <!-- 5 · 故事三：金句 -->
 <section class="slide">
-  <div class="kicker">這個孩子多學了什麼技術？沒有。</div>
+  <p class="sub" style="margin:0 0 2vh">這個孩子多學了什麼技術？<strong class="seal-text">沒有。</strong></p>
   <p class="quote">AI 是一位<br><span class="hl">第一天到職、聰明絕頂</span>、<br>但<em>完全不認識你</em>的新同事。</p>
   <p class="sub">你不會對第一天報到的新同事丟一句話就要成品，你會先讓他認識你。AI 一樣。<br>看著孩子把「我想要」變成「我做到了」——這就是今天要給你的東西。</p>
   <div class="pagenum">5 / 16</div>
@@ -316,13 +314,15 @@
 <!-- 9 · 理論 肆：螺旋 + 指導方針 -->
 <section class="slide">
   <div class="ladder-mini"><span style="height:18px"></span><span style="height:30px"></span><span style="height:42px"></span><span class="on" style="height:54px"></span></div>
-  <div class="lvtag">第四層 · 組織的大腦（Senge 1990 · Nonaka 螺旋）</div>
+  <div class="lvtag">第四層 · 組織的大腦</div>
+  <div style="font-size:clamp(20px,1.15vw,22px);color:var(--faint);margin-bottom:1vh">Senge 1990 · Nonaka 螺旋</div>
   <h1>個人 → 團隊 → 組織<br><span class="soft">知識往上捲，從你開始。</span></h1>
   <p class="sub" style="margin-top:4vh;border-top:3px double var(--ink);padding-top:3vh;max-width:none">
     <span class="kicker" style="display:block;margin-bottom:1vh">Guiding Principle · 指導方針</span>
-    <span style="display:block;font-size:clamp(16px,2vw,24px);color:var(--muted);margin-bottom:1.5vh">想學東西，問對問題是關鍵；想把事做成，從好的交接開始——今天，練後者。</span>
-    <span class="quote" style="font-size:clamp(28px,4.2vw,54px)">別練提問，<span class="hl">練交接</span>。</span><br>
-    <span style="font-size:clamp(12px,1.4vw,15px)">Stop prompting, start briefing.——對方對你的了解深度，決定互動品質。人如此，AI 也是。</span>
+    <span style="display:block;font-size:clamp(28px,1.67vw,32px);color:var(--muted);margin-bottom:1.5vh">想學東西，問對問題是關鍵；想把事做成，從好的交接開始——今天，練後者。</span>
+    <span class="quote">別練提問，<span class="hl">練交接</span>。</span>
+    <span style="display:block;font-size:clamp(30px,2.1vw,40px);font-weight:700;margin-top:1.5vh">Stop prompting, start briefing.</span>
+    <span style="display:block;font-size:clamp(28px,1.67vw,32px);color:var(--muted);margin-top:.5vh">對方對你的了解深度，決定互動品質。人如此，AI 也是。</span>
   </p>
   <div class="pagenum">9 / 16</div>
 </section>
@@ -332,11 +332,11 @@
   <div class="kicker">接下來 · 全部動手</div>
   <h1>同一個練習，三種深度</h1>
   <div class="cards3">
-    <a class="cardgo" href="card-level1.html"><div><div class="lv">LEVEL 1 · 入門</div><b>個人脈絡卡</b><p>教 AI 認識你。前後對比，答案立刻不一樣。</p><span class="qtile"><svg viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="M2 2h7v1h-7zM11 2h5v1h-5zM18 2h5v1h-5zM25 2h1v1h-1zM28 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM12 3h1v1h-1zM14 3h5v1h-5zM20 3h1v1h-1zM22 3h3v1h-3zM26 3h1v1h-1zM28 3h1v1h-1zM34 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h1v1h-1zM14 4h2v1h-2zM17 4h2v1h-2zM20 4h1v1h-1zM22 4h3v1h-3zM28 4h1v1h-1zM30 4h3v1h-3zM34 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM10 5h1v1h-1zM13 5h2v1h-2zM16 5h1v1h-1zM18 5h2v1h-2zM24 5h3v1h-3zM28 5h1v1h-1zM30 5h3v1h-3zM34 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM17 6h1v1h-1zM21 6h2v1h-2zM25 6h2v1h-2zM28 6h1v1h-1zM30 6h3v1h-3zM34 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h2v1h-2zM13 7h3v1h-3zM17 7h4v1h-4zM23 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h7v1h-7zM10 9h1v1h-1zM14 9h1v1h-1zM16 9h2v1h-2zM20 9h5v1h-5zM2 10h1v1h-1zM4 10h5v1h-5zM12 10h6v1h-6zM19 10h4v1h-4zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h5v1h-5zM3 11h5v1h-5zM10 11h2v1h-2zM14 11h1v1h-1zM20 11h3v1h-3zM25 11h1v1h-1zM28 11h2v1h-2zM31 11h4v1h-4zM2 12h4v1h-4zM7 12h2v1h-2zM13 12h1v1h-1zM17 12h2v1h-2zM23 12h2v1h-2zM30 12h1v1h-1zM32 12h2v1h-2zM2 13h5v1h-5zM9 13h2v1h-2zM14 13h1v1h-1zM16 13h2v1h-2zM20 13h1v1h-1zM23 13h1v1h-1zM25 13h3v1h-3zM30 13h3v1h-3zM34 13h1v1h-1zM2 14h2v1h-2zM7 14h5v1h-5zM13 14h2v1h-2zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h1v1h-1zM30 14h2v1h-2zM3 15h1v1h-1zM5 15h1v1h-1zM7 15h1v1h-1zM11 15h2v1h-2zM15 15h7v1h-7zM25 15h1v1h-1zM28 15h2v1h-2zM32 15h3v1h-3zM3 16h2v1h-2zM7 16h3v1h-3zM11 16h6v1h-6zM19 16h1v1h-1zM22 16h1v1h-1zM24 16h1v1h-1zM26 16h4v1h-4zM31 16h1v1h-1zM33 16h1v1h-1zM2 17h1v1h-1zM7 17h1v1h-1zM12 17h2v1h-2zM18 17h1v1h-1zM20 17h1v1h-1zM23 17h1v1h-1zM25 17h5v1h-5zM31 17h2v1h-2zM2 18h1v1h-1zM5 18h5v1h-5zM12 18h1v1h-1zM14 18h1v1h-1zM19 18h1v1h-1zM26 18h2v1h-2zM29 18h2v1h-2zM34 18h1v1h-1zM4 19h3v1h-3zM10 19h1v1h-1zM13 19h1v1h-1zM16 19h1v1h-1zM18 19h6v1h-6zM25 19h1v1h-1zM27 19h3v1h-3zM31 19h4v1h-4zM2 20h4v1h-4zM8 20h4v1h-4zM17 20h2v1h-2zM23 20h2v1h-2zM27 20h4v1h-4zM32 20h2v1h-2zM3 21h4v1h-4zM11 21h2v1h-2zM14 21h4v1h-4zM22 21h3v1h-3zM27 21h7v1h-7zM2 22h1v1h-1zM6 22h3v1h-3zM10 22h2v1h-2zM14 22h2v1h-2zM17 22h3v1h-3zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM30 22h2v1h-2zM33 22h1v1h-1zM2 23h1v1h-1zM4 23h3v1h-3zM9 23h4v1h-4zM15 23h1v1h-1zM17 23h1v1h-1zM19 23h3v1h-3zM24 23h2v1h-2zM28 23h2v1h-2zM31 23h2v1h-2zM34 23h1v1h-1zM2 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM8 24h7v1h-7zM16 24h3v1h-3zM20 24h1v1h-1zM24 24h1v1h-1zM27 24h1v1h-1zM31 24h3v1h-3zM2 25h1v1h-1zM5 25h3v1h-3zM10 25h1v1h-1zM14 25h1v1h-1zM17 25h1v1h-1zM22 25h2v1h-2zM26 25h1v1h-1zM29 25h1v1h-1zM32 25h1v1h-1zM2 26h1v1h-1zM4 26h2v1h-2zM7 26h6v1h-6zM16 26h2v1h-2zM19 26h1v1h-1zM21 26h2v1h-2zM24 26h1v1h-1zM26 26h5v1h-5zM34 26h1v1h-1zM10 27h2v1h-2zM13 27h1v1h-1zM15 27h2v1h-2zM18 27h6v1h-6zM26 27h1v1h-1zM30 27h1v1h-1zM32 27h3v1h-3zM2 28h7v1h-7zM12 28h1v1h-1zM16 28h3v1h-3zM22 28h1v1h-1zM24 28h3v1h-3zM28 28h1v1h-1zM30 28h1v1h-1zM32 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM10 29h3v1h-3zM15 29h2v1h-2zM18 29h1v1h-1zM20 29h1v1h-1zM23 29h1v1h-1zM25 29h2v1h-2zM30 29h5v1h-5zM2 30h1v1h-1zM4 30h3v1h-3zM8 30h1v1h-1zM10 30h2v1h-2zM15 30h2v1h-2zM20 30h2v1h-2zM24 30h1v1h-1zM26 30h6v1h-6zM33 30h2v1h-2zM2 31h1v1h-1zM4 31h3v1h-3zM8 31h1v1h-1zM10 31h2v1h-2zM13 31h1v1h-1zM15 31h9v1h-9zM25 31h1v1h-1zM27 31h1v1h-1zM30 31h2v1h-2zM33 31h2v1h-2zM2 32h1v1h-1zM4 32h3v1h-3zM8 32h1v1h-1zM10 32h1v1h-1zM13 32h1v1h-1zM15 32h1v1h-1zM19 32h1v1h-1zM22 32h1v1h-1zM24 32h2v1h-2zM28 32h2v1h-2zM31 32h2v1h-2zM2 33h1v1h-1zM8 33h1v1h-1zM11 33h4v1h-4zM16 33h1v1h-1zM18 33h1v1h-1zM22 33h3v1h-3zM30 33h1v1h-1zM32 33h1v1h-1zM2 34h7v1h-7zM10 34h2v1h-2zM13 34h2v1h-2zM19 34h2v1h-2zM24 34h6v1h-6zM31 34h1v1h-1zM33 34h1v1h-1z" fill="var(--qrink)"/></svg></span><span class="scanhint">掃碼開卡 · 直接在手機上做</span></div></a>
-    <a class="cardgo" href="card-level2.html"><div><div class="lv">LEVEL 2 · 進階</div><b>專屬工作模板</b><p>把一件每週重複的事，變成一鍵完成。</p><span class="qtile"><svg viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="M2 2h7v1h-7zM11 2h5v1h-5zM18 2h5v1h-5zM25 2h1v1h-1zM28 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM12 3h1v1h-1zM14 3h5v1h-5zM20 3h1v1h-1zM22 3h3v1h-3zM26 3h1v1h-1zM28 3h1v1h-1zM34 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM14 4h2v1h-2zM17 4h2v1h-2zM20 4h1v1h-1zM22 4h3v1h-3zM28 4h1v1h-1zM30 4h3v1h-3zM34 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM10 5h1v1h-1zM13 5h1v1h-1zM16 5h1v1h-1zM18 5h2v1h-2zM24 5h3v1h-3zM28 5h1v1h-1zM30 5h3v1h-3zM34 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h1v1h-1zM13 6h1v1h-1zM17 6h1v1h-1zM21 6h2v1h-2zM25 6h2v1h-2zM28 6h1v1h-1zM30 6h3v1h-3zM34 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h2v1h-2zM14 7h2v1h-2zM17 7h4v1h-4zM23 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h7v1h-7zM10 9h1v1h-1zM14 9h1v1h-1zM16 9h2v1h-2zM20 9h5v1h-5zM2 10h1v1h-1zM4 10h5v1h-5zM12 10h6v1h-6zM19 10h4v1h-4zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h5v1h-5zM2 11h4v1h-4zM7 11h1v1h-1zM10 11h2v1h-2zM14 11h1v1h-1zM20 11h3v1h-3zM25 11h1v1h-1zM28 11h2v1h-2zM31 11h4v1h-4zM4 12h5v1h-5zM11 12h3v1h-3zM17 12h2v1h-2zM23 12h2v1h-2zM30 12h1v1h-1zM32 12h2v1h-2zM2 13h5v1h-5zM9 13h3v1h-3zM14 13h1v1h-1zM16 13h2v1h-2zM20 13h1v1h-1zM23 13h1v1h-1zM25 13h3v1h-3zM30 13h3v1h-3zM34 13h1v1h-1zM6 14h1v1h-1zM8 14h2v1h-2zM11 14h3v1h-3zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h1v1h-1zM30 14h2v1h-2zM4 15h1v1h-1zM7 15h1v1h-1zM9 15h3v1h-3zM14 15h8v1h-8zM25 15h1v1h-1zM28 15h2v1h-2zM32 15h3v1h-3zM3 16h3v1h-3zM7 16h6v1h-6zM15 16h2v1h-2zM19 16h1v1h-1zM24 16h1v1h-1zM26 16h4v1h-4zM31 16h1v1h-1zM33 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM7 17h1v1h-1zM10 17h1v1h-1zM12 17h2v1h-2zM18 17h1v1h-1zM20 17h2v1h-2zM23 17h1v1h-1zM25 17h5v1h-5zM31 17h2v1h-2zM2 18h1v1h-1zM5 18h5v1h-5zM12 18h3v1h-3zM19 18h1v1h-1zM26 18h2v1h-2zM29 18h2v1h-2zM34 18h1v1h-1zM2 19h1v1h-1zM4 19h3v1h-3zM10 19h2v1h-2zM13 19h1v1h-1zM16 19h1v1h-1zM18 19h6v1h-6zM25 19h1v1h-1zM27 19h3v1h-3zM31 19h4v1h-4zM2 20h1v1h-1zM4 20h2v1h-2zM8 20h5v1h-5zM17 20h2v1h-2zM23 20h2v1h-2zM27 20h4v1h-4zM32 20h2v1h-2zM3 21h4v1h-4zM12 21h1v1h-1zM14 21h1v1h-1zM16 21h2v1h-2zM22 21h3v1h-3zM27 21h7v1h-7zM5 22h2v1h-2zM8 22h1v1h-1zM10 22h3v1h-3zM14 22h2v1h-2zM17 22h3v1h-3zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM30 22h2v1h-2zM33 22h1v1h-1zM2 23h1v1h-1zM6 23h1v1h-1zM9 23h3v1h-3zM14 23h4v1h-4zM19 23h3v1h-3zM24 23h2v1h-2zM28 23h2v1h-2zM31 23h2v1h-2zM34 23h1v1h-1zM2 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM11 24h2v1h-2zM14 24h1v1h-1zM16 24h3v1h-3zM20 24h1v1h-1zM24 24h1v1h-1zM27 24h1v1h-1zM31 24h3v1h-3zM2 25h1v1h-1zM4 25h4v1h-4zM10 25h1v1h-1zM17 25h1v1h-1zM22 25h2v1h-2zM26 25h1v1h-1zM29 25h1v1h-1zM32 25h1v1h-1zM2 26h1v1h-1zM5 26h1v1h-1zM7 26h2v1h-2zM10 26h3v1h-3zM16 26h2v1h-2zM19 26h1v1h-1zM21 26h2v1h-2zM24 26h1v1h-1zM26 26h5v1h-5zM34 26h1v1h-1zM10 27h2v1h-2zM13 27h1v1h-1zM15 27h2v1h-2zM18 27h6v1h-6zM26 27h1v1h-1zM30 27h1v1h-1zM32 27h3v1h-3zM2 28h7v1h-7zM11 28h2v1h-2zM15 28h1v1h-1zM17 28h2v1h-2zM22 28h1v1h-1zM24 28h3v1h-3zM28 28h1v1h-1zM30 28h1v1h-1zM32 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM10 29h1v1h-1zM12 29h1v1h-1zM16 29h1v1h-1zM18 29h1v1h-1zM20 29h1v1h-1zM23 29h1v1h-1zM25 29h2v1h-2zM30 29h5v1h-5zM2 30h1v1h-1zM4 30h3v1h-3zM8 30h1v1h-1zM10 30h2v1h-2zM14 30h1v1h-1zM16 30h1v1h-1zM20 30h2v1h-2zM24 30h1v1h-1zM26 30h6v1h-6zM33 30h2v1h-2zM2 31h1v1h-1zM4 31h3v1h-3zM8 31h1v1h-1zM10 31h2v1h-2zM13 31h11v1h-11zM25 31h1v1h-1zM27 31h1v1h-1zM30 31h2v1h-2zM33 31h2v1h-2zM2 32h1v1h-1zM4 32h3v1h-3zM8 32h1v1h-1zM10 32h1v1h-1zM15 32h1v1h-1zM19 32h1v1h-1zM22 32h1v1h-1zM24 32h2v1h-2zM28 32h2v1h-2zM31 32h2v1h-2zM2 33h1v1h-1zM8 33h1v1h-1zM11 33h3v1h-3zM16 33h1v1h-1zM18 33h1v1h-1zM22 33h3v1h-3zM30 33h1v1h-1zM32 33h1v1h-1zM2 34h7v1h-7zM10 34h2v1h-2zM14 34h1v1h-1zM19 34h2v1h-2zM24 34h6v1h-6zM31 34h1v1h-1zM33 34h1v1h-1z" fill="var(--qrink)"/></svg></span><span class="scanhint">掃碼開卡 · 直接在手機上做</span></div></a>
-    <a class="cardgo" href="card-level3.html"><div><div class="lv">LEVEL 3 · 挑戰</div><b>團隊記憶檔</b><p>讓 AI 像老同事，懂你們的術語和做法。</p><span class="qtile"><svg viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="M2 2h7v1h-7zM11 2h5v1h-5zM18 2h5v1h-5zM25 2h1v1h-1zM28 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM12 3h1v1h-1zM14 3h5v1h-5zM20 3h1v1h-1zM22 3h3v1h-3zM26 3h1v1h-1zM28 3h1v1h-1zM34 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h3v1h-3zM14 4h2v1h-2zM17 4h2v1h-2zM20 4h1v1h-1zM22 4h3v1h-3zM28 4h1v1h-1zM30 4h3v1h-3zM34 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM10 5h5v1h-5zM16 5h1v1h-1zM18 5h2v1h-2zM24 5h3v1h-3zM28 5h1v1h-1zM30 5h3v1h-3zM34 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h3v1h-3zM17 6h1v1h-1zM21 6h2v1h-2zM25 6h2v1h-2zM28 6h1v1h-1zM30 6h3v1h-3zM34 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h2v1h-2zM14 7h2v1h-2zM17 7h4v1h-4zM23 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h7v1h-7zM10 9h1v1h-1zM14 9h1v1h-1zM16 9h2v1h-2zM20 9h5v1h-5zM2 10h1v1h-1zM4 10h5v1h-5zM12 10h6v1h-6zM19 10h4v1h-4zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h5v1h-5zM2 11h4v1h-4zM7 11h1v1h-1zM10 11h1v1h-1zM14 11h1v1h-1zM20 11h3v1h-3zM25 11h1v1h-1zM28 11h2v1h-2zM31 11h4v1h-4zM3 12h3v1h-3zM8 12h1v1h-1zM11 12h1v1h-1zM13 12h1v1h-1zM17 12h2v1h-2zM23 12h2v1h-2zM30 12h1v1h-1zM32 12h2v1h-2zM4 13h3v1h-3zM9 13h4v1h-4zM14 13h1v1h-1zM16 13h2v1h-2zM20 13h1v1h-1zM23 13h1v1h-1zM25 13h3v1h-3zM30 13h3v1h-3zM34 13h1v1h-1zM3 14h1v1h-1zM8 14h2v1h-2zM11 14h3v1h-3zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h1v1h-1zM30 14h2v1h-2zM3 15h1v1h-1zM7 15h1v1h-1zM11 15h1v1h-1zM14 15h8v1h-8zM25 15h1v1h-1zM28 15h2v1h-2zM32 15h3v1h-3zM3 16h2v1h-2zM7 16h6v1h-6zM15 16h2v1h-2zM19 16h1v1h-1zM22 16h1v1h-1zM24 16h1v1h-1zM26 16h4v1h-4zM31 16h1v1h-1zM33 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM7 17h1v1h-1zM12 17h2v1h-2zM18 17h1v1h-1zM20 17h2v1h-2zM23 17h1v1h-1zM25 17h5v1h-5zM31 17h2v1h-2zM2 18h1v1h-1zM5 18h4v1h-4zM12 18h1v1h-1zM14 18h1v1h-1zM19 18h1v1h-1zM26 18h2v1h-2zM29 18h2v1h-2zM34 18h1v1h-1zM4 19h2v1h-2zM10 19h1v1h-1zM13 19h1v1h-1zM16 19h1v1h-1zM18 19h6v1h-6zM25 19h1v1h-1zM27 19h3v1h-3zM31 19h4v1h-4zM4 20h7v1h-7zM12 20h1v1h-1zM17 20h2v1h-2zM23 20h2v1h-2zM27 20h4v1h-4zM32 20h2v1h-2zM4 21h4v1h-4zM14 21h1v1h-1zM16 21h2v1h-2zM22 21h3v1h-3zM27 21h7v1h-7zM3 22h1v1h-1zM5 22h1v1h-1zM7 22h2v1h-2zM11 22h2v1h-2zM16 22h4v1h-4zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM30 22h2v1h-2zM33 22h1v1h-1zM2 23h6v1h-6zM10 23h2v1h-2zM13 23h1v1h-1zM15 23h1v1h-1zM17 23h1v1h-1zM19 23h3v1h-3zM24 23h2v1h-2zM28 23h2v1h-2zM31 23h2v1h-2zM34 23h1v1h-1zM2 24h1v1h-1zM4 24h3v1h-3zM8 24h1v1h-1zM11 24h4v1h-4zM16 24h3v1h-3zM20 24h1v1h-1zM24 24h1v1h-1zM27 24h1v1h-1zM31 24h3v1h-3zM2 25h1v1h-1zM4 25h4v1h-4zM10 25h1v1h-1zM14 25h1v1h-1zM17 25h1v1h-1zM22 25h2v1h-2zM26 25h1v1h-1zM29 25h1v1h-1zM32 25h1v1h-1zM2 26h1v1h-1zM4 26h2v1h-2zM7 26h7v1h-7zM16 26h2v1h-2zM19 26h1v1h-1zM21 26h2v1h-2zM24 26h1v1h-1zM26 26h5v1h-5zM34 26h1v1h-1zM10 27h2v1h-2zM13 27h1v1h-1zM15 27h2v1h-2zM18 27h6v1h-6zM26 27h1v1h-1zM30 27h1v1h-1zM32 27h3v1h-3zM2 28h7v1h-7zM11 28h2v1h-2zM17 28h2v1h-2zM22 28h1v1h-1zM24 28h3v1h-3zM28 28h1v1h-1zM30 28h1v1h-1zM32 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM10 29h2v1h-2zM16 29h1v1h-1zM18 29h1v1h-1zM20 29h1v1h-1zM23 29h1v1h-1zM25 29h2v1h-2zM30 29h5v1h-5zM2 30h1v1h-1zM4 30h3v1h-3zM8 30h1v1h-1zM10 30h2v1h-2zM14 30h2v1h-2zM20 30h2v1h-2zM24 30h1v1h-1zM26 30h6v1h-6zM33 30h2v1h-2zM2 31h1v1h-1zM4 31h3v1h-3zM8 31h1v1h-1zM10 31h2v1h-2zM13 31h11v1h-11zM25 31h1v1h-1zM27 31h1v1h-1zM30 31h2v1h-2zM33 31h2v1h-2zM2 32h1v1h-1zM4 32h3v1h-3zM8 32h1v1h-1zM10 32h1v1h-1zM14 32h2v1h-2zM19 32h1v1h-1zM22 32h1v1h-1zM24 32h2v1h-2zM28 32h2v1h-2zM31 32h2v1h-2zM2 33h1v1h-1zM8 33h1v1h-1zM11 33h2v1h-2zM16 33h1v1h-1zM18 33h1v1h-1zM22 33h3v1h-3zM30 33h1v1h-1zM32 33h1v1h-1zM2 34h7v1h-7zM10 34h2v1h-2zM13 34h2v1h-2zM19 34h2v1h-2zM24 34h6v1h-6zM31 34h1v1h-1zM33 34h1v1h-1z" fill="var(--qrink)"/></svg></span><span class="scanhint">掃碼開卡 · 直接在手機上做</span></div></a>
+    <a class="cardgo" href="card-level1.html"><div><div class="lv">LEVEL 1 · 入門</div><b>個人脈絡卡</b><p>教 AI 認識你，答案立刻不同。</p><span class="qtile"><svg viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="M2 2h7v1h-7zM11 2h5v1h-5zM18 2h5v1h-5zM25 2h1v1h-1zM28 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM12 3h1v1h-1zM14 3h5v1h-5zM20 3h1v1h-1zM22 3h3v1h-3zM26 3h1v1h-1zM28 3h1v1h-1zM34 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h1v1h-1zM14 4h2v1h-2zM17 4h2v1h-2zM20 4h1v1h-1zM22 4h3v1h-3zM28 4h1v1h-1zM30 4h3v1h-3zM34 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM10 5h1v1h-1zM13 5h2v1h-2zM16 5h1v1h-1zM18 5h2v1h-2zM24 5h3v1h-3zM28 5h1v1h-1zM30 5h3v1h-3zM34 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM17 6h1v1h-1zM21 6h2v1h-2zM25 6h2v1h-2zM28 6h1v1h-1zM30 6h3v1h-3zM34 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h2v1h-2zM13 7h3v1h-3zM17 7h4v1h-4zM23 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h7v1h-7zM10 9h1v1h-1zM14 9h1v1h-1zM16 9h2v1h-2zM20 9h5v1h-5zM2 10h1v1h-1zM4 10h5v1h-5zM12 10h6v1h-6zM19 10h4v1h-4zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h5v1h-5zM3 11h5v1h-5zM10 11h2v1h-2zM14 11h1v1h-1zM20 11h3v1h-3zM25 11h1v1h-1zM28 11h2v1h-2zM31 11h4v1h-4zM2 12h4v1h-4zM7 12h2v1h-2zM13 12h1v1h-1zM17 12h2v1h-2zM23 12h2v1h-2zM30 12h1v1h-1zM32 12h2v1h-2zM2 13h5v1h-5zM9 13h2v1h-2zM14 13h1v1h-1zM16 13h2v1h-2zM20 13h1v1h-1zM23 13h1v1h-1zM25 13h3v1h-3zM30 13h3v1h-3zM34 13h1v1h-1zM2 14h2v1h-2zM7 14h5v1h-5zM13 14h2v1h-2zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h1v1h-1zM30 14h2v1h-2zM3 15h1v1h-1zM5 15h1v1h-1zM7 15h1v1h-1zM11 15h2v1h-2zM15 15h7v1h-7zM25 15h1v1h-1zM28 15h2v1h-2zM32 15h3v1h-3zM3 16h2v1h-2zM7 16h3v1h-3zM11 16h6v1h-6zM19 16h1v1h-1zM22 16h1v1h-1zM24 16h1v1h-1zM26 16h4v1h-4zM31 16h1v1h-1zM33 16h1v1h-1zM2 17h1v1h-1zM7 17h1v1h-1zM12 17h2v1h-2zM18 17h1v1h-1zM20 17h1v1h-1zM23 17h1v1h-1zM25 17h5v1h-5zM31 17h2v1h-2zM2 18h1v1h-1zM5 18h5v1h-5zM12 18h1v1h-1zM14 18h1v1h-1zM19 18h1v1h-1zM26 18h2v1h-2zM29 18h2v1h-2zM34 18h1v1h-1zM4 19h3v1h-3zM10 19h1v1h-1zM13 19h1v1h-1zM16 19h1v1h-1zM18 19h6v1h-6zM25 19h1v1h-1zM27 19h3v1h-3zM31 19h4v1h-4zM2 20h4v1h-4zM8 20h4v1h-4zM17 20h2v1h-2zM23 20h2v1h-2zM27 20h4v1h-4zM32 20h2v1h-2zM3 21h4v1h-4zM11 21h2v1h-2zM14 21h4v1h-4zM22 21h3v1h-3zM27 21h7v1h-7zM2 22h1v1h-1zM6 22h3v1h-3zM10 22h2v1h-2zM14 22h2v1h-2zM17 22h3v1h-3zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM30 22h2v1h-2zM33 22h1v1h-1zM2 23h1v1h-1zM4 23h3v1h-3zM9 23h4v1h-4zM15 23h1v1h-1zM17 23h1v1h-1zM19 23h3v1h-3zM24 23h2v1h-2zM28 23h2v1h-2zM31 23h2v1h-2zM34 23h1v1h-1zM2 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM8 24h7v1h-7zM16 24h3v1h-3zM20 24h1v1h-1zM24 24h1v1h-1zM27 24h1v1h-1zM31 24h3v1h-3zM2 25h1v1h-1zM5 25h3v1h-3zM10 25h1v1h-1zM14 25h1v1h-1zM17 25h1v1h-1zM22 25h2v1h-2zM26 25h1v1h-1zM29 25h1v1h-1zM32 25h1v1h-1zM2 26h1v1h-1zM4 26h2v1h-2zM7 26h6v1h-6zM16 26h2v1h-2zM19 26h1v1h-1zM21 26h2v1h-2zM24 26h1v1h-1zM26 26h5v1h-5zM34 26h1v1h-1zM10 27h2v1h-2zM13 27h1v1h-1zM15 27h2v1h-2zM18 27h6v1h-6zM26 27h1v1h-1zM30 27h1v1h-1zM32 27h3v1h-3zM2 28h7v1h-7zM12 28h1v1h-1zM16 28h3v1h-3zM22 28h1v1h-1zM24 28h3v1h-3zM28 28h1v1h-1zM30 28h1v1h-1zM32 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM10 29h3v1h-3zM15 29h2v1h-2zM18 29h1v1h-1zM20 29h1v1h-1zM23 29h1v1h-1zM25 29h2v1h-2zM30 29h5v1h-5zM2 30h1v1h-1zM4 30h3v1h-3zM8 30h1v1h-1zM10 30h2v1h-2zM15 30h2v1h-2zM20 30h2v1h-2zM24 30h1v1h-1zM26 30h6v1h-6zM33 30h2v1h-2zM2 31h1v1h-1zM4 31h3v1h-3zM8 31h1v1h-1zM10 31h2v1h-2zM13 31h1v1h-1zM15 31h9v1h-9zM25 31h1v1h-1zM27 31h1v1h-1zM30 31h2v1h-2zM33 31h2v1h-2zM2 32h1v1h-1zM4 32h3v1h-3zM8 32h1v1h-1zM10 32h1v1h-1zM13 32h1v1h-1zM15 32h1v1h-1zM19 32h1v1h-1zM22 32h1v1h-1zM24 32h2v1h-2zM28 32h2v1h-2zM31 32h2v1h-2zM2 33h1v1h-1zM8 33h1v1h-1zM11 33h4v1h-4zM16 33h1v1h-1zM18 33h1v1h-1zM22 33h3v1h-3zM30 33h1v1h-1zM32 33h1v1h-1zM2 34h7v1h-7zM10 34h2v1h-2zM13 34h2v1h-2zM19 34h2v1h-2zM24 34h6v1h-6zM31 34h1v1h-1zM33 34h1v1h-1z" fill="var(--qrink)"/></svg></span><span class="scanhint">掃碼開卡</span></div></a>
+    <a class="cardgo" href="card-level2.html"><div><div class="lv">LEVEL 2 · 進階</div><b>專屬工作模板</b><p>每週重複的事，一鍵完成。</p><span class="qtile"><svg viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="M2 2h7v1h-7zM11 2h5v1h-5zM18 2h5v1h-5zM25 2h1v1h-1zM28 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM12 3h1v1h-1zM14 3h5v1h-5zM20 3h1v1h-1zM22 3h3v1h-3zM26 3h1v1h-1zM28 3h1v1h-1zM34 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM14 4h2v1h-2zM17 4h2v1h-2zM20 4h1v1h-1zM22 4h3v1h-3zM28 4h1v1h-1zM30 4h3v1h-3zM34 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM10 5h1v1h-1zM13 5h1v1h-1zM16 5h1v1h-1zM18 5h2v1h-2zM24 5h3v1h-3zM28 5h1v1h-1zM30 5h3v1h-3zM34 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h1v1h-1zM13 6h1v1h-1zM17 6h1v1h-1zM21 6h2v1h-2zM25 6h2v1h-2zM28 6h1v1h-1zM30 6h3v1h-3zM34 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h2v1h-2zM14 7h2v1h-2zM17 7h4v1h-4zM23 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h7v1h-7zM10 9h1v1h-1zM14 9h1v1h-1zM16 9h2v1h-2zM20 9h5v1h-5zM2 10h1v1h-1zM4 10h5v1h-5zM12 10h6v1h-6zM19 10h4v1h-4zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h5v1h-5zM2 11h4v1h-4zM7 11h1v1h-1zM10 11h2v1h-2zM14 11h1v1h-1zM20 11h3v1h-3zM25 11h1v1h-1zM28 11h2v1h-2zM31 11h4v1h-4zM4 12h5v1h-5zM11 12h3v1h-3zM17 12h2v1h-2zM23 12h2v1h-2zM30 12h1v1h-1zM32 12h2v1h-2zM2 13h5v1h-5zM9 13h3v1h-3zM14 13h1v1h-1zM16 13h2v1h-2zM20 13h1v1h-1zM23 13h1v1h-1zM25 13h3v1h-3zM30 13h3v1h-3zM34 13h1v1h-1zM6 14h1v1h-1zM8 14h2v1h-2zM11 14h3v1h-3zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h1v1h-1zM30 14h2v1h-2zM4 15h1v1h-1zM7 15h1v1h-1zM9 15h3v1h-3zM14 15h8v1h-8zM25 15h1v1h-1zM28 15h2v1h-2zM32 15h3v1h-3zM3 16h3v1h-3zM7 16h6v1h-6zM15 16h2v1h-2zM19 16h1v1h-1zM24 16h1v1h-1zM26 16h4v1h-4zM31 16h1v1h-1zM33 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM7 17h1v1h-1zM10 17h1v1h-1zM12 17h2v1h-2zM18 17h1v1h-1zM20 17h2v1h-2zM23 17h1v1h-1zM25 17h5v1h-5zM31 17h2v1h-2zM2 18h1v1h-1zM5 18h5v1h-5zM12 18h3v1h-3zM19 18h1v1h-1zM26 18h2v1h-2zM29 18h2v1h-2zM34 18h1v1h-1zM2 19h1v1h-1zM4 19h3v1h-3zM10 19h2v1h-2zM13 19h1v1h-1zM16 19h1v1h-1zM18 19h6v1h-6zM25 19h1v1h-1zM27 19h3v1h-3zM31 19h4v1h-4zM2 20h1v1h-1zM4 20h2v1h-2zM8 20h5v1h-5zM17 20h2v1h-2zM23 20h2v1h-2zM27 20h4v1h-4zM32 20h2v1h-2zM3 21h4v1h-4zM12 21h1v1h-1zM14 21h1v1h-1zM16 21h2v1h-2zM22 21h3v1h-3zM27 21h7v1h-7zM5 22h2v1h-2zM8 22h1v1h-1zM10 22h3v1h-3zM14 22h2v1h-2zM17 22h3v1h-3zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM30 22h2v1h-2zM33 22h1v1h-1zM2 23h1v1h-1zM6 23h1v1h-1zM9 23h3v1h-3zM14 23h4v1h-4zM19 23h3v1h-3zM24 23h2v1h-2zM28 23h2v1h-2zM31 23h2v1h-2zM34 23h1v1h-1zM2 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM11 24h2v1h-2zM14 24h1v1h-1zM16 24h3v1h-3zM20 24h1v1h-1zM24 24h1v1h-1zM27 24h1v1h-1zM31 24h3v1h-3zM2 25h1v1h-1zM4 25h4v1h-4zM10 25h1v1h-1zM17 25h1v1h-1zM22 25h2v1h-2zM26 25h1v1h-1zM29 25h1v1h-1zM32 25h1v1h-1zM2 26h1v1h-1zM5 26h1v1h-1zM7 26h2v1h-2zM10 26h3v1h-3zM16 26h2v1h-2zM19 26h1v1h-1zM21 26h2v1h-2zM24 26h1v1h-1zM26 26h5v1h-5zM34 26h1v1h-1zM10 27h2v1h-2zM13 27h1v1h-1zM15 27h2v1h-2zM18 27h6v1h-6zM26 27h1v1h-1zM30 27h1v1h-1zM32 27h3v1h-3zM2 28h7v1h-7zM11 28h2v1h-2zM15 28h1v1h-1zM17 28h2v1h-2zM22 28h1v1h-1zM24 28h3v1h-3zM28 28h1v1h-1zM30 28h1v1h-1zM32 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM10 29h1v1h-1zM12 29h1v1h-1zM16 29h1v1h-1zM18 29h1v1h-1zM20 29h1v1h-1zM23 29h1v1h-1zM25 29h2v1h-2zM30 29h5v1h-5zM2 30h1v1h-1zM4 30h3v1h-3zM8 30h1v1h-1zM10 30h2v1h-2zM14 30h1v1h-1zM16 30h1v1h-1zM20 30h2v1h-2zM24 30h1v1h-1zM26 30h6v1h-6zM33 30h2v1h-2zM2 31h1v1h-1zM4 31h3v1h-3zM8 31h1v1h-1zM10 31h2v1h-2zM13 31h11v1h-11zM25 31h1v1h-1zM27 31h1v1h-1zM30 31h2v1h-2zM33 31h2v1h-2zM2 32h1v1h-1zM4 32h3v1h-3zM8 32h1v1h-1zM10 32h1v1h-1zM15 32h1v1h-1zM19 32h1v1h-1zM22 32h1v1h-1zM24 32h2v1h-2zM28 32h2v1h-2zM31 32h2v1h-2zM2 33h1v1h-1zM8 33h1v1h-1zM11 33h3v1h-3zM16 33h1v1h-1zM18 33h1v1h-1zM22 33h3v1h-3zM30 33h1v1h-1zM32 33h1v1h-1zM2 34h7v1h-7zM10 34h2v1h-2zM14 34h1v1h-1zM19 34h2v1h-2zM24 34h6v1h-6zM31 34h1v1h-1zM33 34h1v1h-1z" fill="var(--qrink)"/></svg></span><span class="scanhint">掃碼開卡</span></div></a>
+    <a class="cardgo" href="card-level3.html"><div><div class="lv">LEVEL 3 · 挑戰</div><b>團隊記憶檔</b><p>懂你們術語和做法的老同事。</p><span class="qtile"><svg viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="M2 2h7v1h-7zM11 2h5v1h-5zM18 2h5v1h-5zM25 2h1v1h-1zM28 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM12 3h1v1h-1zM14 3h5v1h-5zM20 3h1v1h-1zM22 3h3v1h-3zM26 3h1v1h-1zM28 3h1v1h-1zM34 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h3v1h-3zM14 4h2v1h-2zM17 4h2v1h-2zM20 4h1v1h-1zM22 4h3v1h-3zM28 4h1v1h-1zM30 4h3v1h-3zM34 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM10 5h5v1h-5zM16 5h1v1h-1zM18 5h2v1h-2zM24 5h3v1h-3zM28 5h1v1h-1zM30 5h3v1h-3zM34 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h3v1h-3zM17 6h1v1h-1zM21 6h2v1h-2zM25 6h2v1h-2zM28 6h1v1h-1zM30 6h3v1h-3zM34 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h2v1h-2zM14 7h2v1h-2zM17 7h4v1h-4zM23 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h7v1h-7zM10 9h1v1h-1zM14 9h1v1h-1zM16 9h2v1h-2zM20 9h5v1h-5zM2 10h1v1h-1zM4 10h5v1h-5zM12 10h6v1h-6zM19 10h4v1h-4zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h5v1h-5zM2 11h4v1h-4zM7 11h1v1h-1zM10 11h1v1h-1zM14 11h1v1h-1zM20 11h3v1h-3zM25 11h1v1h-1zM28 11h2v1h-2zM31 11h4v1h-4zM3 12h3v1h-3zM8 12h1v1h-1zM11 12h1v1h-1zM13 12h1v1h-1zM17 12h2v1h-2zM23 12h2v1h-2zM30 12h1v1h-1zM32 12h2v1h-2zM4 13h3v1h-3zM9 13h4v1h-4zM14 13h1v1h-1zM16 13h2v1h-2zM20 13h1v1h-1zM23 13h1v1h-1zM25 13h3v1h-3zM30 13h3v1h-3zM34 13h1v1h-1zM3 14h1v1h-1zM8 14h2v1h-2zM11 14h3v1h-3zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h1v1h-1zM30 14h2v1h-2zM3 15h1v1h-1zM7 15h1v1h-1zM11 15h1v1h-1zM14 15h8v1h-8zM25 15h1v1h-1zM28 15h2v1h-2zM32 15h3v1h-3zM3 16h2v1h-2zM7 16h6v1h-6zM15 16h2v1h-2zM19 16h1v1h-1zM22 16h1v1h-1zM24 16h1v1h-1zM26 16h4v1h-4zM31 16h1v1h-1zM33 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM7 17h1v1h-1zM12 17h2v1h-2zM18 17h1v1h-1zM20 17h2v1h-2zM23 17h1v1h-1zM25 17h5v1h-5zM31 17h2v1h-2zM2 18h1v1h-1zM5 18h4v1h-4zM12 18h1v1h-1zM14 18h1v1h-1zM19 18h1v1h-1zM26 18h2v1h-2zM29 18h2v1h-2zM34 18h1v1h-1zM4 19h2v1h-2zM10 19h1v1h-1zM13 19h1v1h-1zM16 19h1v1h-1zM18 19h6v1h-6zM25 19h1v1h-1zM27 19h3v1h-3zM31 19h4v1h-4zM4 20h7v1h-7zM12 20h1v1h-1zM17 20h2v1h-2zM23 20h2v1h-2zM27 20h4v1h-4zM32 20h2v1h-2zM4 21h4v1h-4zM14 21h1v1h-1zM16 21h2v1h-2zM22 21h3v1h-3zM27 21h7v1h-7zM3 22h1v1h-1zM5 22h1v1h-1zM7 22h2v1h-2zM11 22h2v1h-2zM16 22h4v1h-4zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM30 22h2v1h-2zM33 22h1v1h-1zM2 23h6v1h-6zM10 23h2v1h-2zM13 23h1v1h-1zM15 23h1v1h-1zM17 23h1v1h-1zM19 23h3v1h-3zM24 23h2v1h-2zM28 23h2v1h-2zM31 23h2v1h-2zM34 23h1v1h-1zM2 24h1v1h-1zM4 24h3v1h-3zM8 24h1v1h-1zM11 24h4v1h-4zM16 24h3v1h-3zM20 24h1v1h-1zM24 24h1v1h-1zM27 24h1v1h-1zM31 24h3v1h-3zM2 25h1v1h-1zM4 25h4v1h-4zM10 25h1v1h-1zM14 25h1v1h-1zM17 25h1v1h-1zM22 25h2v1h-2zM26 25h1v1h-1zM29 25h1v1h-1zM32 25h1v1h-1zM2 26h1v1h-1zM4 26h2v1h-2zM7 26h7v1h-7zM16 26h2v1h-2zM19 26h1v1h-1zM21 26h2v1h-2zM24 26h1v1h-1zM26 26h5v1h-5zM34 26h1v1h-1zM10 27h2v1h-2zM13 27h1v1h-1zM15 27h2v1h-2zM18 27h6v1h-6zM26 27h1v1h-1zM30 27h1v1h-1zM32 27h3v1h-3zM2 28h7v1h-7zM11 28h2v1h-2zM17 28h2v1h-2zM22 28h1v1h-1zM24 28h3v1h-3zM28 28h1v1h-1zM30 28h1v1h-1zM32 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM10 29h2v1h-2zM16 29h1v1h-1zM18 29h1v1h-1zM20 29h1v1h-1zM23 29h1v1h-1zM25 29h2v1h-2zM30 29h5v1h-5zM2 30h1v1h-1zM4 30h3v1h-3zM8 30h1v1h-1zM10 30h2v1h-2zM14 30h2v1h-2zM20 30h2v1h-2zM24 30h1v1h-1zM26 30h6v1h-6zM33 30h2v1h-2zM2 31h1v1h-1zM4 31h3v1h-3zM8 31h1v1h-1zM10 31h2v1h-2zM13 31h11v1h-11zM25 31h1v1h-1zM27 31h1v1h-1zM30 31h2v1h-2zM33 31h2v1h-2zM2 32h1v1h-1zM4 32h3v1h-3zM8 32h1v1h-1zM10 32h1v1h-1zM14 32h2v1h-2zM19 32h1v1h-1zM22 32h1v1h-1zM24 32h2v1h-2zM28 32h2v1h-2zM31 32h2v1h-2zM2 33h1v1h-1zM8 33h1v1h-1zM11 33h2v1h-2zM16 33h1v1h-1zM18 33h1v1h-1zM22 33h3v1h-3zM30 33h1v1h-1zM32 33h1v1h-1zM2 34h7v1h-7zM10 34h2v1h-2zM13 34h2v1h-2zM19 34h2v1h-2zM24 34h6v1h-6zM31 34h1v1h-1zM33 34h1v1h-1z" fill="var(--qrink)"/></svg></span><span class="scanhint">掃碼開卡</span></div></a>
   </div>
-  <div class="rulebar"><b>規則：</b>等一下<b>每個人都先做 Level 1</b>——你需要親身的前後對比。已設定過個人化／記憶的人，改做「乾淨對照」（<a href="tools.html">對照表</a>有教）。工具不限、免費版做得完。</div>
+  <div class="rulebar"><b>規則：</b><b>每個人都先做 Level 1</b>——親身前後對比。工具不限，免費版做得完。</div>
   <a class="l4key" href="card-level4.html" aria-label="隱藏卡 L4（講師用）">L4 ⌁</a>
   <div class="pagenum">10 / 16</div>
 </section>
@@ -368,9 +368,9 @@
   <div class="kicker">回家作業 · 只有一件事</div>
   <h1>把脈絡卡，<em>用滿一週</em></h1>
   <div class="cta-box">
-    <p><b>每次開新對話，先貼脈絡卡。</b>一週後你會回不去。<br>想存成永久記憶？照「工具對照表」設定一次就好。<br>最後一句誠實話：AI 認識你之後還是會錯——重要的事，核對再用。</p>
+    <p><b>每次開新對話，先貼脈絡卡。</b>一週後你會回不去。</p>
   </div>
-  <p class="quote" style="margin-top:5vh;font-size:clamp(26px,4vw,52px)">別練提問，<span class="hl">練交接</span>。</p>
+  <p class="quote" style="margin-top:5vh">別練提問，<span class="hl">練交接</span>。</p>
   <div class="pagenum">13 / 16</div>
 </section>
 
