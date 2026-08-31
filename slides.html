@@ -19,7 +19,7 @@
     --hair:#D9D6CE;
     --on-accent:#FDFBF7;
     --wash:#EDF3F1;--qrpaper:#FFFFFF;--qrink:#000000;
-    --imgpaper:#F7F6F2;
+    --imgpaper:#F7F6F2;--imgink:#17263B;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -33,7 +33,7 @@
       --hair:#2A3038;
       --on-accent:#16100E;
       --wash:#1A2420;--qrpaper:#FFFFFF;--qrink:#000000;
-      --imgpaper:#F7F6F2;
+      --imgpaper:#F7F6F2;--imgink:#17263B;
     }
   }
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -177,9 +177,9 @@
   /* CTA slide */
   .cta-box{
     margin-top:4vh;background:var(--surface);border:2px solid var(--teal);border-radius:14px;
-    padding:3.5vh 2em;max-width:760px;
+    padding:4.5vh 1.6em;max-width:1040px;
   }
-  .cta-box p{font-size:clamp(28px,1.67vw,32px);color:var(--muted);}
+  .cta-box p{font-size:clamp(30px,2.1vw,40px);color:var(--muted);}
   .cta-box b{color:var(--ink);}
 
   .navhint{
@@ -195,6 +195,11 @@
   .slide-img img{
     max-width:100vw;max-height:100vh;width:auto;height:auto;
     object-fit:contain;display:block;
+  }
+  .imgcap{
+    position:absolute;bottom:4.5vh;left:0;right:0;text-align:center;
+    font-family:'Noto Sans TC',sans-serif;font-weight:700;
+    font-size:clamp(28px,1.67vw,32px);color:var(--imgink);letter-spacing:.08em;
   }
 
   @media print{
@@ -320,7 +325,7 @@
   <p class="sub" style="margin-top:4vh;border-top:3px double var(--ink);padding-top:3vh;max-width:none">
     <span class="kicker" style="display:block;margin-bottom:1vh">Guiding Principle · 指導方針</span>
     <span style="display:block;font-size:clamp(28px,1.67vw,32px);color:var(--muted);margin-bottom:1.5vh">想學東西，問對問題是關鍵；想把事做成，從好的交接開始——今天，練後者。</span>
-    <span class="quote">別練提問，<span class="hl">練交接</span>。</span>
+    <span class="quote">今天不練提問，<span class="hl">練交接</span>。</span>
     <span style="display:block;font-size:clamp(30px,2.1vw,40px);font-weight:700;margin-top:1.5vh">Stop prompting, start briefing.</span>
     <span style="display:block;font-size:clamp(28px,1.67vw,32px);color:var(--muted);margin-top:.5vh">對方對你的了解深度，決定互動品質。人如此，AI 也是。</span>
   </p>
@@ -358,8 +363,8 @@
 <!-- 12 · 收尾：螺旋放大 -->
 <section class="slide">
   <div class="kicker">今天你做的事，放大來看</div>
-  <p class="quote">你今天的一次外化，<br>放大就是<span class="hl">團隊與事工的<br>共同記憶</span>。</p>
-  <p class="sub">想像你的小組、你的同工團隊，有一個懂你們術語、懂你們慣例的 AI 同事——它，從今天你這張脈絡卡開始。</p>
+  <p class="quote" style="font-size:clamp(44px,3.3vw,64px)">你今天的一次外化，<br>放大就是<span class="hl">團隊與事工的<br>共同記憶</span>。</p>
+  <p class="sub" style="margin-top:4vh">想像你的小組、你的同工團隊，<br>有一個懂你們術語、懂你們慣例的 AI 同事——<br><strong>它，從今天你這張脈絡卡開始。</strong></p>
   <div class="pagenum">12 / 16</div>
 </section>
 
@@ -370,7 +375,7 @@
   <div class="cta-box">
     <p><b>每次開新對話，先貼脈絡卡。</b>一週後你會回不去。</p>
   </div>
-  <p class="quote" style="margin-top:5vh">別練提問，<span class="hl">練交接</span>。</p>
+  <p class="quote" style="margin-top:6vh;font-size:clamp(48px,3.75vw,72px)">今天不練提問，<span class="hl">練交接</span>。</p>
   <div class="pagenum">13 / 16</div>
 </section>
 
@@ -381,7 +386,7 @@
 <section class="slide slide-img"><img src="opening-lamps.png" alt="五旬節的燈：很多語言，人卻懂了——使徒行傳 2:6"><div class="pagenum">15 / 16</div></section>
 
 <!-- 16 · 收尾定錨：個人脈絡卡與鋼筆 -->
-<section class="slide slide-img"><img src="opening-card.png" alt="個人脈絡卡與鋼筆：不是讓你去學機器的話，是讓機器聽懂你的話"><div class="pagenum">16 / 16</div></section>
+<section class="slide slide-img"><img src="opening-card.png" alt="個人脈絡卡與鋼筆：不是讓你去學機器的話，是讓機器聽懂你的話"><div class="imgcap">我是誰 ｜ 我的處境 ｜ 我真正的目的 ｜ 我偏好的回答方式</div><div class="pagenum">16 / 16</div></section>
 
 <div class="navhint">← → 方向鍵或點擊換頁</div>
 
